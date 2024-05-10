@@ -1,0 +1,12 @@
+<div class="window">
+    <div class="menu">
+        <ng-container *ngFor="let item of MENU">
+            <div class="item ccenter" [routerLink]="item.route" [routerLinkActive]="'active'">
+                <i class="{{item.icon}}"></i>
+            </div>
+        </ng-container>
+    </div>
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>
+</div>
