@@ -1,1 +1,72 @@
-<p>tts works!</p>
+<div class="software">
+    <div class="doc">
+        <div class="product">aily TTS Module v1</div>
+        <app-markdown></app-markdown>
+        <!-- <div class="title">aily TTS模块播放测试</div>
+        <nz-steps nzDirection="vertical">
+            <nz-step nzTitle="将TTS模块与USB转串口模块连接" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="点击“连接设备”按键，选择对应的串口设备" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="选择需要播放的语句，或自定义语句，并点击“▶”按键" nzDescription="This is a description."></nz-step>
+        </nz-steps>
+
+        <div class="title">aily TTS代码生成</div>
+        <nz-steps nzDirection="vertical">
+            <nz-step nzTitle="将TTS模块与USB转串口模块连接" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="点击“连接设备”按键，选择对应的串口设备" nzDescription="This is a description."></nz-step>
+            <nz-step nzTitle="选择需要播放的语句，或自定义语句，并点击“▶”按键" nzDescription="This is a description."></nz-step>
+        </nz-steps> -->
+    </div>
+    <div class="main">
+        <div class="title">基本配置</div>
+        <div class="top">
+            <button nz-button class="icon">
+                <i class="fa-solid fa-link-simple"></i> 连接设备
+            </button>
+            <div>
+                音量
+                <nz-input-number [(ngModel)]="volume" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+            </div>
+            <div>
+                语速
+                <nz-input-number [(ngModel)]="speed" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+            </div>
+            <div>
+                语调
+                <nz-input-number [(ngModel)]="pitch" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+            </div>
+        </div>
+        <div class="title">播放内容</div>
+        <div class="test-box">
+            <button nz-button nzType="default">你好，我是aily，这是TTS模块的播放测试</button>
+            <button nz-button nzType="default">aily project是我们退出的AI硬件项目，致力于提供多种AI能力模块，帮助用户快速开发出AI时代的原生硬件</button>
+            <button nz-button nzType="dashed">自定义语句</button>
+        </div>
+        <div class="custom-input">
+            <input nz-input placeholder="Basic usage" [(ngModel)]="customText" type="number" />
+        </div>
+        <div class="title">指令生成</div>
+        <div class="hex-box">
+            <input type="text">
+            <nz-button-group>
+                <button nz-button nzType="primary">
+                    <i class="fa-regular fa-play"></i>
+                </button>
+                <button nz-button nzType="primary">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </nz-button-group>
+        </div>
+        <div class="title">代码生成</div>
+        <div class="gencode">
+            <button class="icon" nz-button nzType="primary" (click)="openCodeModal('arduino')">
+                <i class="fa-regular fa-c"></i>Arduino
+            </button>
+            <button class="icon" nz-button nzType="primary" (click)="openCodeModal('python')">
+                <i class="fa-brands fa-python"></i>Python
+            </button>
+            <button class="icon" nz-button nzType="primary" (click)="openCodeModal('nodejs')">
+                <i class="fa-brands fa-node-js"></i>NodeJS
+            </button>
+        </div>
+    </div>
+</div>
