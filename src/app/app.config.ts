@@ -18,6 +18,8 @@ export const appConfig: ApplicationConfig = {
           { pathMatch: 'full', path: '', redirectTo: 'tts' },
           { path: 'tts', loadComponent: () => import('./software/tts/tts.component').then(m => m.TtsComponent) },
           { path: 'asr', loadComponent: () => import('./software/asr/asr.component').then(m => m.AsrComponent) },
+          { path: 'cv', loadComponent: () => import('./software/cv/cv.component').then(m => m.CvComponent) },
+          { path: 'ct', loadComponent: () => import('./software/ct/ct.component').then(m => m.CtComponent) },
         ]
       },
     ]
