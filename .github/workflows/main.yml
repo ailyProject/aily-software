@@ -27,7 +27,7 @@ jobs:
           npm run build
       
       - name: Deploy
-        uses: garygrossgarten/github-action-scp@v0.5.3
+        uses: garygrossgarten/github-action-scp@v0.8.0
         with:
           local: dist/aily-software
           remote: ${{ secrets.TARGET }}
