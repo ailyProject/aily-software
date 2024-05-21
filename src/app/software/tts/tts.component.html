@@ -40,8 +40,7 @@
         </div>
         <div class="title">播放内容</div>
         <div class="test-box">
-            <button nz-button nzType="default">你好，我是aily，这是TTS模块的播放测试</button>
-            <button nz-button nzType="default">aily project是我们退出的AI硬件项目，致力于提供多种AI能力模块，帮助用户快速开发出AI时代的原生硬件</button>
+            <button nz-button nzType="default" (click)="loadText(item)" *ngFor="let item of testTextList">{{item.text}}</button>
             <button nz-button nzType="dashed">自定义语句</button>
         </div>
         <div class="custom-input">
@@ -54,7 +53,7 @@
                 <button nz-button nzType="primary" (click)="play()">
                     <i class="fa-regular fa-play"></i>
                 </button>
-                <button nz-button nzType="primary">
+                <button nz-button nzType="primary" (click)="copy()">
                     <i class="fa-regular fa-copy"></i>
                 </button>
             </nz-button-group>

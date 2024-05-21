@@ -10,22 +10,25 @@ export class SerialService {
   serial = navigator['serial']
 
   constructor(
-    private messageService: NzMessageService
   ) { }
 
-  async connect() {
-    if ('serial' in navigator) {
-      try {
-        this.port = await this.serial.requestPort();
-        console.log('Serial port:', this.port);
-        await this.port.open({ baudRate: 115200, dataBits: 8, stopBits: 1, parity: 'none' });
-        // this.messageService.success('串口连接成功！');
-      } catch (err) {
-        console.error('There was an error opening the serial port:', err);
+  connect() {
+    return new Promise(async (resolve, reject) => {
+      if ('serial' in navigator) {
+        try {
+          this.port = await this.serial.requestPort();
+          console.log('Serial port:', this.port);
+          await this.port.open({ baudRate: 115200 });
+          resolve(true)
+        } catch (err) {
+          console.error('There was an error opening the serial port:', err);
+          resolve(false)
+        }
+      } else {
+        console.error('Web Serial API not supported.');
+        resolve(false)
       }
-    } else {
-      console.error('Web Serial API not supported.');
-    }
+    });
   }
 
   async disconnect() {
