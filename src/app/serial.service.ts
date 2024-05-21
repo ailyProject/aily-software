@@ -18,7 +18,7 @@ export class SerialService {
         try {
           this.port = await this.serial.requestPort();
           console.log('Serial port:', this.port);
-          await this.port.open({ baudRate: 115200 });
+          await this.port.open({ baudRate: 115200, bufferSize: 5120});
           resolve(true)
         } catch (err) {
           console.error('There was an error opening the serial port:', err);
