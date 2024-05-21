@@ -7,6 +7,8 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class SerialService {
   port: any;
 
+  serial = navigator['serial']
+
   constructor(
     private messageService: NzMessageService
   ) { }
@@ -14,9 +16,9 @@ export class SerialService {
   async connect() {
     if ('serial' in navigator) {
       try {
-        this.port = await (navigator as any).serial.requestPort();
+        this.port = await this.serial.requestPort();
         console.log('Serial port:', this.port);
-        await this.port.open({ baudRate: 9600 });
+        await this.port.open({ baudRate: 115200, dataBits: 8, stopBits: 1, parity: 'none' });
         // this.messageService.success('串口连接成功！');
       } catch (err) {
         console.error('There was an error opening the serial port:', err);
@@ -41,9 +43,14 @@ export class SerialService {
       console.error('Serial port is not connected.');
       return;
     }
+    console.log('send data:', data);
+
     const dataArrayBuffer = hexStringToUint8Array(data);
     try {
-      await this.port.write(dataArrayBuffer);
+      const writer = this.port.writable.getWriter();
+      await writer.write(dataArrayBuffer);
+      writer.releaseLock();
+      console.log('send buffer:', dataArrayBuffer);
     } catch (err) {
       console.error('There was an error writing data to the serial port:', err);
     }

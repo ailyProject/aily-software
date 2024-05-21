@@ -41,6 +41,12 @@ export class TtsComponent {
     return this.serialService.port;
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.customText = "Hello, world!";
+    }, 2000);
+  }
+
 
   openCodeModal(lang) {
     this.modalService.create({
