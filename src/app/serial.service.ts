@@ -12,13 +12,13 @@ export class SerialService {
   constructor(
   ) { }
 
-  connect() {
+  connect(baudRate = 115200) {
     return new Promise(async (resolve, reject) => {
       if ('serial' in navigator) {
         try {
           this.port = await this.serial.requestPort();
           console.log('Serial port:', this.port);
-          await this.port.open({ baudRate: 115200, bufferSize: 5120});
+          await this.port.open({ baudRate: baudRate, bufferSize: 5120 });
           resolve(true)
         } catch (err) {
           console.error('There was an error opening the serial port:', err);
@@ -40,6 +40,32 @@ export class SerialService {
       }
     }
   }
+
+  connectAndListen(baudRate = 115200, callback: (data) => void) {
+    return new Promise(async (resolve, reject) => {
+      if ('serial' in navigator) {
+        try {
+          this.port = await this.serial.requestPort();
+          console.log('Serial port:', this.port);
+          await this.port.open({ baudRate: baudRate, bufferSize: 5120 });
+          this.port.readable.pipeTo(new WritableStream({
+            write: (data) => {
+              const textDecoder = new TextDecoder();
+              console.log('Received data:', textDecoder.decode(data));
+            }
+          }));
+          resolve(true)
+        } catch (err) {
+          console.error('There was an error opening the serial port:', err);
+          resolve(false)
+        }
+      } else {
+        console.error('Web Serial API not supported.');
+        resolve(false)
+      }
+    });
+  }
+
 
   async send(data: string) {
     if (!this.port) {
@@ -65,7 +91,7 @@ export class SerialService {
     let buffer_encode = new Uint8Array([0x04]);
     let buffer_text = new TextEncoder().encode(content);
     let buffer_length = new Uint8Array([0x00, buffer_text.length + 2]);
-
+    // console.log("buffer_length:", buffer_length);
     let buffer = concatUint8Arrays(buffer_head, buffer_length, buffer_cmd, buffer_encode, buffer_text);
     return buffer;
   }

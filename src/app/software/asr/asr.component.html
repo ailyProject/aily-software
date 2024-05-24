@@ -1,1 +1,75 @@
-<p>asr works!</p>
+<div class="container">
+    <div class="header">
+        <h1>产品配置</h1>
+        <div class="options">
+            <label for="voice">语音播放设置</label>
+            <select id="voice">
+                <option value="温柔女声">温柔女声</option>
+            </select>
+            <label for="volume">音量</label>
+            <input type="number" id="volume" value="1">
+            <label for="language">语言</label>
+            <input type="number" id="language" value="1">
+        </div>
+    </div>
+    <div class="main">
+        <div class="config-section">
+            <div class="config-item">
+                <label for="uart">通信串口设置</label>
+                <select id="uart">
+                    <option value="UART2">UART2</option>
+                </select>
+                <label for="baudrate">波特率</label>
+                <input type="number" id="baudrate" value="115200">
+            </div>
+            <div class="config-item">
+                <label for="trigger-word">唤醒词</label>
+                <input type="text" id="trigger-word" value="你好 aily">
+            </div>
+            <div class="config-item">
+                <label for="command1">指令1</label>
+                <input type="text" id="command1" value="开灯">
+                <label for="action1">动作1</label>
+                <input type="text" id="action1">
+                <label for="delay1">延迟</label>
+                <input type="number" id="delay1" value="1000">
+            </div>
+            <div class="config-item">
+                <label for="command2">指令2</label>
+                <input type="text" id="command2" value="关灯">
+                <label for="action2">动作2</label>
+                <input type="text" id="action2">
+                <label for="delay2">延迟</label>
+                <input type="number" id="delay2" value="1000">
+            </div>
+            <div class="config-item">
+                <label for="command3">指令3</label>
+                <input type="text" id="command3" value="开启风扇">
+                <label for="action3">动作3</label>
+                <input type="text" id="action3">
+                <label for="delay3">延迟</label>
+                <input type="number" id="delay3" value="1000">
+            </div>
+            <button class="btn btn-primary">添加语音指令</button>
+        </div>
+        <div class="config-section">
+            <label for="io-input">IO输入</label>
+            <select id="io-input">
+                <option value="GPIO10">GPIO10</option>
+            </select>
+            <select id="io-state">
+                <option value="HIGH">HIGH</option>
+            </select>
+            <button class="btn btn-primary">添加IO输入</button>
+        </div>
+        <div class="config-section">
+            <label for="uart-input">串口输入</label>
+            <input type="text" id="uart-input" value="ok">
+            <button class="btn btn-primary">添加串口输入</button>
+        </div>
+        <div class="action-buttons">
+            <button class="btn btn-primary">下载配置</button>
+            <button class="btn btn-secondary">保存配置</button>
+        </div>
+    </div>
+</div>
