@@ -22,6 +22,13 @@ export const MENU = [
     {
         icon: 'fa-brands fa-github',
         text: 'Github',
-        url: 'https://github.com/ailyproject'
+        url: 'https://github.com/ailyproject',
+        position: 'bottom'
+    },
+    {
+        icon: 'fa-light fa-globe-pointer',
+        text: 'Github',
+        url: 'https://aily.pro',
+        position: 'bottom'
     }
 ]

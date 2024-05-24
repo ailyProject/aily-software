@@ -1,74 +1,113 @@
 <div class="software">
-    <div class="doc">
-        <div class="product">aily TTS Module v1</div>
+    <div class="doc block-box">
         <app-markdown></app-markdown>
-        <!-- <div class="title">aily TTS模块播放测试</div>
-        <nz-steps nzDirection="vertical">
-            <nz-step nzTitle="将TTS模块与USB转串口模块连接" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="点击“连接设备”按键，选择对应的串口设备" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="选择需要播放的语句，或自定义语句，并点击“▶”按键" nzDescription="This is a description."></nz-step>
-        </nz-steps>
-
-        <div class="title">aily TTS代码生成</div>
-        <nz-steps nzDirection="vertical">
-            <nz-step nzTitle="将TTS模块与USB转串口模块连接" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="点击“连接设备”按键，选择对应的串口设备" nzDescription="This is a description."></nz-step>
-            <nz-step nzTitle="选择需要播放的语句，或自定义语句，并点击“▶”按键" nzDescription="This is a description."></nz-step>
-        </nz-steps> -->
     </div>
     <div class="main">
-        <div class="title">基本配置</div>
-        <div class="top">
+        <div class="block-box">
+            <div class="title">
+                <div>
+                    <i class="fa-solid fa-link-simple"></i>
+                </div>
+                设备连接
+            </div>
             <button nz-button class="icon" (click)="connect()">
                 <i class="fa-solid fa-link-simple"></i>
                 <ng-container *ngIf="port;else device">已连接</ng-container>
                 <ng-template #device>连接设备</ng-template>
+            </button>
+        </div>
+        <div class="block-box">
+            <div class="title">
+                <div><i class="fa-solid fa-sliders"></i></div>
 
-            </button>
-            <div>
-                音量
-                <nz-input-number [(ngModel)]="volume" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                基本配置
             </div>
-            <div>
-                语速
-                <nz-input-number [(ngModel)]="speed" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+            <div class="top">
+                <div>
+                    音色
+                    <nz-input-number [(ngModel)]="volume" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                </div>
+                <div>
+                    音量
+                    <nz-input-number [(ngModel)]="volume" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                </div>
+                <div>
+                    语速
+                    <nz-input-number [(ngModel)]="speed" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                </div>
+                <div>
+                    语调
+                    <nz-input-number [(ngModel)]="pitch" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                </div>
             </div>
-            <div>
-                语调
-                <nz-input-number [(ngModel)]="pitch" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+        </div>
+        <div class="block-box">
+            <div class="title">
+                <div><i class="fa-solid fa-input-text"></i></div>
+                测试文本
+            </div>
+            <div class="test-box">
+                <button nz-button nzType="default" (click)="loadText(item)"
+                    *ngFor="let item of testTextList">{{item.text}}</button>
             </div>
         </div>
-        <div class="title">播放内容</div>
-        <div class="test-box">
-            <button nz-button nzType="default" (click)="loadText(item)" *ngFor="let item of testTextList">{{item.text}}</button>
-            <button nz-button nzType="dashed">自定义语句</button>
+        <div class="block-box">
+            <div class="title">
+                <div><i class="fa-solid fa-input-pipe"></i></div>
+                自定义文本
+            </div>
+            <div class="custom-input">
+                <input nz-input placeholder="Basic usage" [(ngModel)]="customText"
+                    (ngModelChange)="customTextChange()" />
+            </div>
         </div>
-        <div class="custom-input">
-            <input nz-input placeholder="Basic usage" [(ngModel)]="customText" (ngModelChange)="customTextChange()" />
+        <div class="block-box">
+            <div class="title">
+                <div><i class="fa-solid fa-laptop-code"></i></div>
+                指令生成
+            </div>
+            <div class="hex-box">
+                <nz-code-editor class="editor" [ngModel]="bufferStr" [nzEditorOption]="{
+                    lineNumbers: 'off',
+                    wordWrap: 'on',
+                    minimap: { enabled: false }
+                    }"></nz-code-editor>
+                <nz-button-group>
+                    <button nz-button nzType="primary" (click)="play()">
+                        <i class="fa-light fa-circle-play"></i> 播放
+                    </button>
+                    <button nz-button nzType="primary" (click)="pause()">
+                        <i class="fa-light fa-circle-pause"></i> 暂停
+                    </button>
+                    <button nz-button nzType="primary" (click)="copy()">
+                        <i class="fa-light fa-copy"></i> 复制
+                    </button>
+                </nz-button-group>
+            </div>
         </div>
-        <div class="title">指令生成</div>
-        <div class="hex-box">
-            <input type="text" [(ngModel)]="bufferStr">
-            <nz-button-group>
-                <button nz-button nzType="primary" (click)="play()">
-                    <i class="fa-regular fa-play"></i>
-                </button>
-                <button nz-button nzType="primary" (click)="copy()">
-                    <i class="fa-regular fa-copy"></i>
-                </button>
-            </nz-button-group>
+    </div>
+    <div class="right-box block-box">
+        <div class="title">
+            <div><i class="fa-solid fa-brackets-curly"></i></div>
+            代码生成
         </div>
-        <div class="title">代码生成</div>
         <div class="gencode">
-            <button class="icon" nz-button nzType="primary" (click)="openCodeModal('arduino')">
-                <i class="fa-regular fa-c"></i>Arduino
+            <button (click)="selectCode('arduino')">
+                <i class="fa-regular fa-infinity"></i>Arduino
             </button>
-            <button class="icon" nz-button nzType="primary" (click)="openCodeModal('python')">
+            <button (click)="selectCode('python')">
                 <i class="fa-brands fa-python"></i>Python
             </button>
-            <button class="icon" nz-button nzType="primary" (click)="openCodeModal('nodejs')">
+            <button (click)="selectCode('nodejs')">
                 <i class="fa-brands fa-node-js"></i>NodeJS
             </button>
+        </div>
+        <div>
+            <nz-code-editor class="editor" [ngModel]="code" [nzEditorOption]="{
+                lineNumbers: 'off',
+                wordWrap: 'on',
+                scrollBeyondLastLine: false }">
+            </nz-code-editor>
         </div>
     </div>
 </div>

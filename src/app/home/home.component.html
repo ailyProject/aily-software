@@ -1,5 +1,5 @@
 <div class="window">
-    <div class="menu">
+    <div class="menu ccenter">
         <ng-container *ngFor="let item of MENU">
             <div *ngIf="item.route" class="item ccenter" [routerLink]="item.route" [routerLinkActive]="'active'">
                 <i class="{{item.icon}}"></i>
@@ -10,6 +10,7 @@
         </ng-container>
     </div>
     <div class="main">
+        <div class="title">aily TTS Module v1</div>
         <router-outlet></router-outlet>
     </div>
 </div>

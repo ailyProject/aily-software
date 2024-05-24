@@ -5,11 +5,10 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule } from '@angular/forms';
-import { NzModalModule, NzModalService } from 'ng-zorro-antd/modal';
-import { CodeModalComponent } from './modal/code-modal/code-modal.component';
 import { MarkdownComponent } from '../../component/markdown/markdown.component';
 import { SerialService } from '../../serial.service';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 
 @Component({
   selector: 'app-tts',
@@ -21,8 +20,8 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
     NzInputNumberModule,
     NzInputModule,
     NzButtonModule,
-    NzModalModule,
-    MarkdownComponent
+    MarkdownComponent,
+    NzCodeEditorModule
   ],
   templateUrl: './tts.component.html',
   styleUrl: './tts.component.scss'
@@ -30,13 +29,19 @@ import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 export class TtsComponent {
 
   testTextList = [
-    { text: '你好，我是艾莉，这是TTS模块的播放测试', buffer: 'FD 00 38 01 04 E4 BD A0 E5 A5 BD EF BC 8C E6 88 91 E6 98 AF E8 89 BE E8 8E 89 EF BC 8C E8 BF 99 E6 98 AF 54 54 53 E6 A8 A1 E5 9D 97 E7 9A 84 E6 92 AD E6 94 BE E6 B5 8B E8 AF 95' },
-    { text: 'aily project是我们推出的AI硬件项目，致力于提供多种AI能力模块，帮助用户快速开发出AI时代的原生硬件', buffer: 'FD 00 89 01 04 61 69 6C 79 20 70 72 6F 6A 65 63 74 E6 98 AF E6 88 91 E4 BB AC E9 80 80 E5 87 BA E7 9A 84 41 49 E7 A1 AC E4 BB B6 E9 A1 B9 E7 9B AE EF BC 8C E8 87 B4 E5 8A 9B E4 BA 8E E6 8F 90 E4 BE 9B E5 A4 9A E7 A7 8D 41 49 E8 83 BD E5 8A 9B E6 A8 A1 E5 9D 97 EF BC 8C E5 B8 AE E5 8A A9 E7 94 A8 E6 88 B7 E5 BF AB E9 80 9F E5 BC 80 E5 8F 91 E5 87 BA 41 49 E6 97 B6 E4 BB A3 E7 9A 84 E5 8E 9F E7 94 9F E7 A1 AC E4 BB B6' },
+    { text: '你好，我是艾莉' },
+    { text: '这是TTS模块的播放测试' },
+    { text: '这个工具可以帮助你生成TTS模块相关指令及代码' },
+    { text: '艾莉项目是我们推出的AI硬件项目，致力于提供多种AI能力模块，帮助用户快速开发AI时代的原生硬件' },
+    { text: '八百标兵奔北坡，北坡炮兵并排跑，炮兵怕把标兵碰，标兵怕碰炮兵炮' },
+    { text: '蒸羊羔、蒸熊掌、蒸鹿尾儿、烧花鸭、烧雏鸡、烧子鹅、卤猪、卤鸭、酱鸡、腊肉、松花、小肚儿、晾肉、香肠儿、什锦苏盘、熏鸡白肚儿、清蒸八宝猪' },
+    { text: '关关雎鸠,在河之洲,窈窕淑女,君子好逑' },
+    { text: '蒹葭苍苍,白露为霜,所谓伊人,在水一方' },
   ]
 
+  code = ``;
 
   constructor(
-    private modalService: NzModalService,
     private serialService: SerialService,
     private message: NzMessageService
   ) { }
@@ -47,14 +52,6 @@ export class TtsComponent {
 
   get port() {
     return this.serialService.port;
-  }
-
-  openCodeModal(lang) {
-    this.modalService.create({
-      nzTitle: 'Code',
-      nzContent: CodeModalComponent,
-      nzFooter: null,
-    });
   }
 
   async connect() {
@@ -77,6 +74,10 @@ export class TtsComponent {
     this.serialService.send(this.bufferStr);
   }
 
+  pause(){
+    // this.serialService.send(this.bufferStr);
+  }
+
   copy() {
     copyToClipboard(this.bufferStr);
     this.message.create('success', 'Copied to clipboard');
@@ -84,7 +85,11 @@ export class TtsComponent {
 
   loadText(item) {
     this.customText = item.text;
-    this.bufferStr = item.buffer;
+    this.customTextChange()
+  }
+
+  selectCode(code) {
+
   }
 }
 
