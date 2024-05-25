@@ -18,12 +18,13 @@
     }
 }
 
-.connect-btn{
+.connect-btn {
     border-radius: 6px;
     background: #f7f7f7;
     border: none;
     width: 100px;
-    &.connect{
+
+    &.connect {
         background: #473bd4;
         color: #FFF;
     }
@@ -95,7 +96,8 @@
 
             nz-slider {
                 width: 100%;
-                ::ng-deep{
+
+                ::ng-deep {
                     .ant-slider-rail {
                         background: #d6d6d6;
                     }
@@ -147,7 +149,7 @@
         border-right-color: #6f63ed !important;
         color: #FFF;
         margin-left: 10px;
-        border-radius: 2px;
+        border-radius: 6px;
     }
 
     .editor {
@@ -230,13 +232,22 @@ button {
     border: none;
     cursor: pointer;
     height: 32px;
+    width: 100px;
     padding: 0 10px;
 
     &:hover {
-        opacity: 1;
+        opacity: 0.8;
     }
 
     &.active {
         opacity: 1;
+    }
+
+    &:first-child {
+        border-radius: 12px 0 0 0;
+    }
+
+    &:last-child {
+        border-radius: 0 12px 0 0;
     }
 }
