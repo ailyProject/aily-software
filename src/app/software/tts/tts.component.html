@@ -1,8 +1,8 @@
 <div class="software">
-    <div class="doc block-box">
+    <div class="left-box block-box">
         <app-markdown></app-markdown>
     </div>
-    <div class="main">
+    <div class="mid-box">
         <div class="block-box">
             <div class="title">
                 <div>
@@ -55,8 +55,7 @@
                 自定义文本
             </div>
             <div class="custom-input">
-                <input nz-input [(ngModel)]="customText"
-                    (ngModelChange)="customTextChange()" />
+                <input nz-input [(ngModel)]="customText" (ngModelChange)="customTextChange()" />
             </div>
         </div>
         <div class="block-box">
@@ -90,18 +89,19 @@
             代码生成
         </div>
         <div class="gencode">
-            <button (click)="selectCode('arduino')">
+            <button class="code-btn" (click)="selectCode('arduino')" [ngClass]="{'active': currentCode=='arduino'}">
                 <i class="fa-regular fa-infinity"></i>Arduino
             </button>
-            <button (click)="selectCode('python')">
+            <button class="code-btn" (click)="selectCode('python')" [ngClass]="{'active': currentCode=='python'}">
                 <i class="fa-brands fa-python"></i>Python
             </button>
-            <button (click)="selectCode('nodejs')">
+            <button class="code-btn" (click)="selectCode('nodejs')" [ngClass]="{'active': currentCode=='nodejs'}">
                 <i class="fa-brands fa-node-js"></i>NodeJS
             </button>
         </div>
         <div class="code-zone">
-            <nz-code-editor class="editor" [ngModel]="code" [nzEditorOption]="{ }">
+            <nz-code-editor class="editor" [ngModel]="code" [nzEditorOption]="{ language:'cpp',wordWrap: 'on',
+            minimap: { enabled: false }}">
             </nz-code-editor>
         </div>
     </div>

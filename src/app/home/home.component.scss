@@ -3,11 +3,12 @@
     width: 100vw;
     height: 100vh;
     background: rgba(241, 246, 255, 1);
+    position: relative;
 
     .menu {
-        width: 140px;
+        width: 100px;
+        height: 100%;
         flex-shrink: 0;
-        border-right: 1px solid #ccc;
         background: rgba(27, 30, 58, 1);
         flex-direction: column;
         justify-content: flex-start;
@@ -34,6 +35,8 @@
 
     .main {
         padding: 15px;
+        width: calc(100vw - 100px);
+        position: relative;
 
         .title {
             font-size: 28px;

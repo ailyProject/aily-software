@@ -1,12 +1,13 @@
 export const MENU = [
     {
         icon: 'fa-light fa-volume',
-        text: 'TTS',
-        route: '/tts'
+        text: 'aily TTS Module v1',
+        text2: 'Offline Text To Speech',
+        route: '/tts',
     },
     {
         icon: 'fa-light fa-microphone',
-        text: 'Offline speech recognition',
+        text: 'Offline Speech Recognition',
         route: '/asr'
     },
     {

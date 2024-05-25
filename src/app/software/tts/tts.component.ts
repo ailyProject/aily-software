@@ -7,8 +7,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { FormsModule } from '@angular/forms';
 import { MarkdownComponent } from '../../component/markdown/markdown.component';
 import { SerialService } from '../../serial.service';
-import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
+import { loadArduinoCode, loadNodejsCode, loadPythonCode } from './examples';
 
 @Component({
   selector: 'app-tts',
@@ -33,13 +34,13 @@ export class TtsComponent {
     { text: '这是TTS模块的播放测试' },
     { text: '这个工具可以帮助你生成TTS模块相关指令及代码' },
     { text: '艾莉项目是我们推出的AI硬件项目，致力于提供多种AI能力模块，帮助用户快速开发AI时代的原生硬件' },
-    { text: '八百标兵奔北坡，北坡炮兵并排跑，炮兵怕把标兵碰，标兵怕碰炮兵炮' },
-    { text: '蒸羊羔、蒸熊掌、蒸鹿尾儿、烧花鸭、烧雏鸡、烧子鹅、卤猪、卤鸭、酱鸡、腊肉、松花、小肚儿、晾肉、香肠儿、什锦苏盘、熏鸡白肚儿、清蒸八宝猪' },
     { text: '关关雎鸠,在河之洲,窈窕淑女,君子好逑' },
     { text: '蒹葭苍苍,白露为霜,所谓伊人,在水一方' },
+    { text: '八百标兵奔北坡，北坡炮兵并排跑，炮兵怕把标兵碰，标兵怕碰炮兵炮' },
+    { text: '蒸羊羔、蒸熊掌、蒸鹿尾儿、烧花鸭、烧雏鸡、烧子鹅、卤猪、卤鸭、酱鸡、腊肉、松花、小肚儿' },
   ]
 
-  code = ``;
+  code = '';
 
   constructor(
     private serialService: SerialService,
@@ -68,13 +69,16 @@ export class TtsComponent {
     let bufferStr1 = Array.prototype.map.call(buffer, x => ('00' + x.toString(16)).slice(-2)).join('');
     let bufferStr2 = bufferStr1.match(/.{1,2}/g).join(' ');
     this.bufferStr = bufferStr2.toUpperCase();
+
+    // 更新代码部分
+    this.selectCode()
   }
 
   play() {
     this.serialService.send(this.bufferStr);
   }
 
-  pause(){
+  pause() {
     // this.serialService.send(this.bufferStr);
   }
 
@@ -88,8 +92,22 @@ export class TtsComponent {
     this.customTextChange()
   }
 
-  selectCode(code) {
-
+  currentCode = 'arduino'
+  selectCode(code = this.currentCode) {
+    this.currentCode = code;
+    switch (code) {
+      case 'arduino':
+        this.code = loadArduinoCode(this.customText);
+        break;
+      case 'python':
+        this.code = loadPythonCode(this.customText);
+        break;
+      case 'nodejs':
+        this.code = loadNodejsCode(this.customText);
+        break;
+      default:
+        break;
+    }
   }
 }
 

@@ -2,6 +2,7 @@
 
 .title {
     font-weight: bold;
+    margin-left: -8px;
     margin-bottom: 5px;
     display: flex;
     align-items: center;
@@ -37,45 +38,68 @@ button.icon {
     display: flex;
     flex-wrap: wrap;
     margin-top: 15px;
+    margin-bottom: -10px;
+    margin-right: -15px;
 
     button {
         margin-right: 15px;
         margin-bottom: 10px;
+        border-radius: 6px;
+        background: #f7f7f7;
+        border: none;
     }
 }
 
 .hex-box {
     background: #FFF;
-    display: flex;
-    border-radius: 15px 15px 0 15px;
-    height: 120px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 
     .editor {
-        height: 200px;
+        height: 100px;
         margin-bottom: 15px;
-    }
-}
+        overflow: hidden;
+        border-radius: 8px;
 
-.gencode {
-    button {
-        i {
-            margin-right: 5px;
+        ::ng-deep {
+            .monaco-editor-background {
+                background-color: #f7f7f7;
+            }
+
+            .overflow-guard {
+                .margin {
+                    background-color: #f7f7f7;
+                }
+            }
         }
+
     }
 }
 
-.main {
+.left-box {
+    min-width: 300px;
+}
+
+.mid-box {
     margin-left: 15px;
+    flex-shrink: 1;
+    flex-grow: 0;
 
     .block-box {
         margin-top: 15px;
 
         &:first-child {
             margin-top: 0;
+        }
+    }
+
+    .custom-input {
+        input {
+            background: #f7f7f7;
+            border: none;
+            border-radius: 6px;
         }
     }
 }
@@ -86,7 +110,40 @@ button.icon {
 }
 
 .code-zone {
+    margin-left: -15px;
+
     .editor {
-        height: 100%;
+        height: 700px;
+
+    }
+}
+
+button {
+    i {
+        margin-right: 8px;
+    }
+}
+
+
+.gencode {
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 6px;
+}
+
+.code-btn {
+    background: #473bd4;
+    opacity: 0.6;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    padding: 0 10px;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &.active {
+        opacity: 1;
     }
 }
