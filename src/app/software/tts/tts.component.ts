@@ -10,6 +10,8 @@ import { SerialService } from '../../serial.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 import { loadArduinoCode, loadNodejsCode, loadPythonCode } from './examples';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSliderModule } from 'ng-zorro-antd/slider';
 
 @Component({
   selector: 'app-tts',
@@ -22,7 +24,9 @@ import { loadArduinoCode, loadNodejsCode, loadPythonCode } from './examples';
     NzInputModule,
     NzButtonModule,
     MarkdownComponent,
-    NzCodeEditorModule
+    NzCodeEditorModule,
+    NzSelectModule,
+    NzSliderModule
   ],
   templateUrl: './tts.component.html',
   styleUrl: './tts.component.scss'

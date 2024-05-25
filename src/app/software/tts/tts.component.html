@@ -10,7 +10,7 @@
                 </div>
                 设备连接
             </div>
-            <button nz-button class="icon" (click)="connect()">
+            <button nz-button class="connect-btn" (click)="connect()" [ngClass]="{'connect': port}">
                 <ng-container *ngIf="port;else device">已连接</ng-container>
                 <ng-template #device>连接设备</ng-template>
             </button>
@@ -21,21 +21,48 @@
                 基本配置
             </div>
             <div class="top">
-                <div>
-                    音色
-                    <nz-input-number [(ngModel)]="volume" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                <div class="setting-item">
+                    <div class="line ccenter">
+                        <div class="ccenter"><i class="fa-solid fa-users"></i></div>
+                        音色
+                    </div>
+                    <nz-select ngModel="lucy">
+                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                    </nz-select>
                 </div>
-                <div>
-                    音量
-                    <nz-input-number [(ngModel)]="volume" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                <div class="setting-item">
+                    <div class="line ccenter">
+                        <div class="ccenter"><i class="fa-solid fa-volume"></i></div>
+                        音量
+                    </div>
+                    <div class="slider-box">
+                        <!-- <i class="fa-regular fa-minus"></i> -->
+                        <nz-slider [nzMin]="1" [nzMax]="9" [(ngModel)]="volume"></nz-slider>
+                        <!-- <i class="fa-regular fa-plus"></i> -->
+                    </div>
                 </div>
-                <div>
-                    语速
-                    <nz-input-number [(ngModel)]="speed" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                <div class="setting-item">
+                    <div class="line ccenter">
+                        <div class="ccenter"><i class="fa-solid fa-comment-dots"></i></div>
+                        语速
+                    </div>
+                    <div class="slider-box">
+                        <!-- <i class="fa-regular fa-minus"></i> -->
+                        <nz-slider [nzMin]="1" [nzMax]="9" [(ngModel)]="speed"></nz-slider>
+                        <!-- <i class="fa-regular fa-plus"></i> -->
+                    </div>
                 </div>
-                <div>
-                    语调
-                    <nz-input-number [(ngModel)]="pitch" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+                <div class="setting-item">
+                    <div class="line ccenter">
+                        <div class="ccenter"><i class="fa-solid fa-explosion"></i></div>
+                        语调
+                    </div>
+                    <div class="slider-box">
+                        <!-- <i class="fa-regular fa-minus"></i> -->
+                        <nz-slider [nzMin]="1" [nzMax]="9" [(ngModel)]="pitch"></nz-slider>
+                        <!-- <i class="fa-regular fa-plus"></i> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,17 +96,17 @@
                     wordWrap: 'on',
                     minimap: { enabled: false }
                     }"></nz-code-editor>
-                <nz-button-group>
-                    <button nz-button nzType="primary" (click)="play()">
+                <div>
+                    <button nz-button (click)="play()">
                         <i class="fa-light fa-circle-play"></i> 播放
                     </button>
-                    <button nz-button nzType="primary" (click)="pause()">
+                    <button nz-button (click)="pause()">
                         <i class="fa-light fa-circle-pause"></i> 暂停
                     </button>
-                    <button nz-button nzType="primary" (click)="copy()">
+                    <button nz-button (click)="copy()">
                         <i class="fa-light fa-copy"></i> 复制
                     </button>
-                </nz-button-group>
+                </div>
             </div>
         </div>
     </div>

@@ -18,19 +18,104 @@
     }
 }
 
-button.icon {
-    margin-right: 15px;
-
-    i {
-        margin-right: 10px;
+.connect-btn{
+    border-radius: 6px;
+    background: #f7f7f7;
+    border: none;
+    width: 100px;
+    &.connect{
+        background: #473bd4;
+        color: #FFF;
     }
 }
 
 .top {
     display: flex;
 
-    >div {
-        margin-left: 15px;
+    .setting-item {
+        margin-right: 15px;
+        background: #f7f7f7;
+        border-radius: 12px;
+        padding: 10px;
+        width: 160px;
+        position: relative;
+
+        .line {
+            justify-content: flex-start;
+
+            >div {
+                width: 30px;
+                height: 30px;
+                margin-right: 6px;
+            }
+        }
+
+        &:nth-child(1) {
+            i {
+                color: rgba(250, 155, 67, 1);
+            }
+        }
+
+        &:nth-child(2) {
+            i {
+                color: rgba(39, 230, 47, 1);
+            }
+        }
+
+        &:nth-child(3) {
+            i {
+                color: rgba(72, 124, 255, 1);
+            }
+        }
+
+        &:nth-child(4) {
+            i {
+                color: rgba(74, 222, 232, 1);
+            }
+        }
+
+        nz-select {
+            width: 100%;
+            margin-top: 10px;
+
+            ::ng-deep {
+                .ant-select-selector {
+                    border: none;
+                    border-radius: 6px;
+                }
+            }
+        }
+
+        .slider-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            position: relative;
+
+            nz-slider {
+                width: 100%;
+                ::ng-deep{
+                    .ant-slider-rail {
+                        background: #d6d6d6;
+                    }
+                }
+            }
+
+            i {
+                color: #666;
+                font-size: 12px;
+                cursor: pointer;
+            }
+
+            i:first-child {
+                margin-right: 10px;
+            }
+
+            i:last-child {
+                margin-left: 10px;
+            }
+        }
     }
 }
 
@@ -56,6 +141,14 @@ button.icon {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+
+    button {
+        background: #473bd4;
+        border-right-color: #6f63ed !important;
+        color: #FFF;
+        margin-left: 10px;
+        border-radius: 2px;
+    }
 
     .editor {
         height: 100px;
