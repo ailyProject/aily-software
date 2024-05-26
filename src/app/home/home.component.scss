@@ -6,7 +6,7 @@
     position: relative;
 
     .menu {
-        width: 100px;
+        width: 60px;
         height: 100%;
         flex-shrink: 0;
         background: rgba(27, 30, 58, 1);
@@ -14,9 +14,9 @@
         justify-content: flex-start;
 
         .item {
-            width: 60px;
-            height: 60px;
-            margin-top: 30px;
+            width: 40px;
+            height: 40px;
+            margin-top: 15px;
             font-size: 22px;
             cursor: pointer;
             color: rgba(255, 255, 255, 1);
@@ -33,37 +33,33 @@
         }
     }
 
+    .item {
+        width: 40px;
+        height: 40px;
+        margin-top: 15px;
+        font-size: 22px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 1);
+        background: rgba(255, 255, 255, 0.14);
+        border-radius: 8px;
+    }
+
     .menu2 {
         position: absolute;
         bottom: 30px;
         flex-direction: column;
-
-        .item {
-            width: 60px;
-            height: 60px;
-            margin-top: 30px;
-            font-size: 22px;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 1);
-            background: rgba(255, 255, 255, 0.14);
-            border-radius: 8px;
-
-            &:hover {
-                background: rgba(71, 59, 212, 1);
-            }
-        }
     }
 
     .main {
-        padding: 15px;
-        width: calc(100vw - 100px);
+        padding: 15px 0 15px 15px;
+        width: calc(100vw - 60px);
         position: relative;
 
         .title {
             font-size: 28px;
             font-weight: 700;
             color: rgba(75, 80, 110, 1);
-            height: 60px;
+            height: 40px;
             display: flex;
             align-items: center;
         }

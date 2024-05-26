@@ -71,6 +71,7 @@
 
         &:nth-child(4) {
             margin-right: 0;
+
             i {
                 color: rgba(74, 222, 232, 1);
             }
@@ -179,13 +180,15 @@
 }
 
 .mid-box {
-    margin-left: 15px;
-    flex-shrink: 1;
-    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
 
     .block-box {
         margin-top: 15px;
-
+        flex-grow: 1;
+        width: 100%;
         &:first-child {
             margin-top: 0;
         }
@@ -202,15 +205,15 @@
 
 .right-box {
     margin-left: 15px;
-    min-width: 400px;
+    height: calc(100vh - 85px);
+    flex-grow: 1;
 }
 
 .code-zone {
     margin-left: -15px;
 
     .editor {
-        height: 700px;
-
+        height: calc(100vh - 240px);
     }
 }
 

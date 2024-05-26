@@ -1,9 +1,14 @@
 .software {
     display: flex;
+    height: calc(100vh - 70px);
+    position: relative;
+    overflow-y: scroll;
+    padding: 15px 15px 15px 0;
 }
 
 .block-box {
     border-radius: 15px;
     background: #fff;
     padding: 15px;
+    max-width: 800px;
 }
