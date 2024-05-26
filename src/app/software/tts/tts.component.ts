@@ -78,6 +78,33 @@ export class TtsComponent {
     this.selectCode()
   }
 
+  settingchange() {
+    if (this.volume != 5) {
+      // 检测this.customText中是否已经有了音量设置
+      if (this.customText.match(/\[v\d+\]/)) {
+        this.customText = this.customText.replace(/\[v\d+\]/, `[v${this.volume}]`)
+      } else {
+        this.customText = `[v${this.volume}]${this.customText}`
+      }
+    }
+    if (this.speed != 5) {
+      // 检测this.customText中是否已经有了语速设置
+      if (this.customText.match(/\[s\d+\]/)) {
+        this.customText = this.customText.replace(/\[s\d+\]/, `[s${this.speed}]`)
+      } else {
+        this.customText = `[s${this.speed}]${this.customText}`
+      }
+    }
+    if (this.pitch != 5) {
+      // 检测this.customText中是否已经有了语调设置
+      if (this.customText.match(/\[t\d+\]/)) {
+        this.customText = this.customText.replace(/\[t\d+\]/, `[t${this.pitch}]`)
+      } else {
+        this.customText = `[t${this.pitch}]${this.customText}`
+      }
+    }
+  }
+
   play() {
     this.serialService.send(this.bufferStr);
   }
@@ -93,6 +120,7 @@ export class TtsComponent {
 
   loadText(item) {
     this.customText = item.text;
+    this.settingchange()
     this.customTextChange()
   }
 

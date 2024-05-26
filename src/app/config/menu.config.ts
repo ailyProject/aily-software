@@ -1,25 +1,28 @@
 export const MENU = [
     {
         icon: 'fa-light fa-volume',
-        text: 'aily TTS Module v1',
+        title: 'aily TTS Module v1',
         text2: 'Offline Text To Speech',
         route: '/tts',
     },
     {
         icon: 'fa-light fa-microphone',
-        text: 'Offline Speech Recognition',
+        title: 'Offline Speech Recognition',
         route: '/asr'
     },
     {
         icon: 'fa-light fa-image-polaroid',
-        text: 'Offline speech recognition',
+        title: 'Offline speech recognition',
         route: '/cv'
     },
     {
         icon: 'fa-light fa-screwdriver-wrench',
-        text: 'Offline speech recognition',
+        title: 'Offline speech recognition',
         route: '/ct'
-    },
+    }
+]
+
+export const MENU2 = [
     {
         icon: 'fa-brands fa-github',
         text: 'Github',
@@ -27,7 +30,7 @@ export const MENU = [
         position: 'bottom'
     },
     {
-        icon: 'fa-light fa-globe-pointer',
+        icon: 'fa-light fa-house',
         text: 'Github',
         url: 'https://aily.pro',
         position: 'bottom'

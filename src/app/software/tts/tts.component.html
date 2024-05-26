@@ -37,7 +37,7 @@
                     </div>
                     <div class="slider-box">
                         <!-- <i class="fa-regular fa-minus"></i> -->
-                        <nz-slider [nzMin]="1" [nzMax]="9" [(ngModel)]="volume"></nz-slider>
+                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="volume" (ngModelChange)="settingchange()"></nz-slider>
                         <!-- <i class="fa-regular fa-plus"></i> -->
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="slider-box">
                         <!-- <i class="fa-regular fa-minus"></i> -->
-                        <nz-slider [nzMin]="1" [nzMax]="9" [(ngModel)]="speed"></nz-slider>
+                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="speed" (ngModelChange)="settingchange()"></nz-slider>
                         <!-- <i class="fa-regular fa-plus"></i> -->
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="slider-box">
                         <!-- <i class="fa-regular fa-minus"></i> -->
-                        <nz-slider [nzMin]="1" [nzMax]="9" [(ngModel)]="pitch"></nz-slider>
+                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="pitch" (ngModelChange)="settingchange()"></nz-slider>
                         <!-- <i class="fa-regular fa-plus"></i> -->
                     </div>
                 </div>

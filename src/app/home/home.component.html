@@ -1,13 +1,17 @@
 <div class="window">
     <div class="menu ccenter">
         <ng-container *ngFor="let item of MENU">
-            <div *ngIf="item.route" class="item ccenter" [routerLink]="item.route" [routerLinkActive]="'active'">
+            <div *ngIf="item.route" class="item ccenter" (click)="goto(item)" [ngClass]="{'active': item.route==path}">
                 <i class="{{item.icon}}"></i>
             </div>
-            <a *ngIf="item.url" class="item ccenter" href="{{item.url}}" target="_blank">
-                <i class="{{item.icon}}"></i>
-            </a>
         </ng-container>
+        <div class="menu2 ccenter">
+            <ng-container *ngFor="let item of MENU2">
+                <a *ngIf="item.url" class="item ccenter" href="{{item.url}}" target="_blank">
+                    <i class="{{item.icon}}"></i>
+                </a>
+            </ng-container>
+        </div>
     </div>
     <div class="main">
         <div class="title">{{title}}</div>

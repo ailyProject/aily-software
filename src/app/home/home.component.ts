@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MENU } from '../config/menu.config';
+import { MENU, MENU2 } from '../config/menu.config';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,5 +13,22 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent {
 
   MENU = MENU
+  MENU2 = MENU2
   title = 'aily Project'
+
+  get path() {
+    return window.location.pathname
+  }
+
+  constructor(
+    private router: Router
+  ) {
+    this.goto(MENU[0])
+  }
+
+
+  goto(item) {
+    this.title = item.title
+    this.router.navigate([item.route])
+  }
 }

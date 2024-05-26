@@ -33,6 +33,27 @@
         }
     }
 
+    .menu2 {
+        position: absolute;
+        bottom: 30px;
+        flex-direction: column;
+
+        .item {
+            width: 60px;
+            height: 60px;
+            margin-top: 30px;
+            font-size: 22px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 1);
+            background: rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+
+            &:hover {
+                background: rgba(71, 59, 212, 1);
+            }
+        }
+    }
+
     .main {
         padding: 15px;
         width: calc(100vw - 100px);
