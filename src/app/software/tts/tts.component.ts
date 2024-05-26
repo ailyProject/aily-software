@@ -110,7 +110,11 @@ export class TtsComponent {
   }
 
   pause() {
-    // this.serialService.send(this.bufferStr);
+    this.serialService.send('FD 00 01 02');
+  }
+
+  getState() {
+    this.serialService.send('FD 00 01 21');
   }
 
   copy() {

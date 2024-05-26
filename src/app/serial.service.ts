@@ -90,8 +90,12 @@ export class SerialService {
     let buffer_cmd = new Uint8Array([0x01]);
     let buffer_encode = new Uint8Array([0x04]);
     let buffer_text = new TextEncoder().encode(content);
-    let buffer_length = new Uint8Array([0x00, buffer_text.length + 2]);
-    // console.log("buffer_length:", buffer_length);
+
+    let buffer_text_length = buffer_text.length + 2;
+    let highByte = buffer_text_length >> 8;
+    let lowByte = buffer_text_length & 0xFF;
+    let buffer_length = new Uint8Array([highByte, lowByte]);
+
     let buffer = concatUint8Arrays(buffer_head, buffer_length, buffer_cmd, buffer_encode, buffer_text);
     return buffer;
   }
