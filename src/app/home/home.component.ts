@@ -24,7 +24,7 @@ export class HomeComponent {
   constructor(
     private router: Router
   ) {
-    // this.goto(MENU[0])
+    this.title = MENU.find(item => item.route === this.router.url)?.title || 'aily Project'
   }
 
 
