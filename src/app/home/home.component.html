@@ -1,7 +1,9 @@
 <div class="window">
     <div class="menu ccenter">
         <ng-container *ngFor="let item of MENU">
-            <div *ngIf="item.route" class="item ccenter" (click)="goto(item)" [ngClass]="{'active': item.route==path}">
+            <div *ngIf="item.route" class="item ccenter" (click)="goto(item)" 
+            [nzTooltipTitle]="item.title" nzTooltipPlacement="right" nz-tooltip
+            [ngClass]="{'active': item.route==path}">
                 <i class="{{item.icon}}"></i>
             </div>
         </ng-container>

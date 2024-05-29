@@ -1,1 +1,212 @@
-@import "../tts/tts.component.scss";
+@import "../software.scss";
+
+.title {
+    font-weight: bold;
+    margin-left: -8px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+
+    >div {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(71, 59, 212, 1);
+        padding-top: 2px;
+    }
+}
+
+.connect-btn {
+    border-radius: 6px;
+    background: #f7f7f7;
+    border: none;
+    width: 100px;
+
+    &.connect {
+        background: #473bd4;
+        color: #FFF;
+    }
+}
+
+.top {
+    display: flex;
+
+    .setting-item {
+        margin-right: 15px;
+        background: #f7f7f7;
+        border-radius: 12px;
+        padding: 10px;
+        width: 160px;
+        position: relative;
+
+        .line {
+            justify-content: flex-start;
+
+            >div {
+                width: 30px;
+                height: 30px;
+                margin-right: 6px;
+            }
+        }
+
+        &:nth-child(1) {
+            i {
+                color: rgba(250, 155, 67, 1);
+            }
+        }
+
+        &:nth-child(2) {
+            i {
+                color: rgba(39, 230, 47, 1);
+            }
+        }
+
+        &:nth-child(3) {
+            i {
+                color: rgba(72, 124, 255, 1);
+            }
+        }
+
+        &:nth-child(4) {
+            margin-right: 0;
+
+            i {
+                color: rgba(74, 222, 232, 1);
+            }
+        }
+
+        nz-select {
+            width: 100%;
+            margin-top: 5px;
+
+            ::ng-deep {
+                .ant-select-selector {
+                    border: none;
+                    border-radius: 6px;
+                }
+            }
+        }
+
+        .slider-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            position: relative;
+
+            nz-slider {
+                width: 100%;
+
+                ::ng-deep {
+                    .ant-slider-rail {
+                        background: #d6d6d6;
+                    }
+                }
+            }
+
+            i {
+                color: #666;
+                font-size: 12px;
+                cursor: pointer;
+            }
+
+            i:first-child {
+                margin-right: 10px;
+            }
+
+            i:last-child {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.test-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: -10px;
+    margin-right: -15px;
+
+    button {
+        margin-right: 15px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        background: #f7f7f7;
+        border: none;
+    }
+}
+
+.left-box {
+    width: calc(100% - 315px);
+    position: relative;
+
+    .rrow {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        >div {
+            width: calc(50% - 7.5px);
+        }
+    }
+
+    >div.block-box {
+        margin-bottom: 15px;
+        width: 100%;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.right-box {
+    margin-left: 15px;
+    height: calc(100vh - 85px);
+    max-width: 300px;
+    flex-grow: 1;
+}
+
+.code-zone {
+    margin-left: -15px;
+
+    .editor {
+        height: calc(100vh - 240px);
+    }
+}
+
+button {
+    i {
+        margin-right: 8px;
+    }
+}
+
+.code-btn {
+    background: #473bd4;
+    opacity: 0.6;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    height: 32px;
+    width: 100px;
+    padding: 0 10px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &.active {
+        opacity: 1;
+    }
+
+    &:first-child {
+        border-radius: 12px 0 0 0;
+    }
+
+    &:last-child {
+        border-radius: 0 12px 0 0;
+    }
+}

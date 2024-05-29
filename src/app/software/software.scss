@@ -10,5 +10,26 @@
     border-radius: 15px;
     background: #fff;
     padding: 15px;
-    max-width: 800px;
+    // max-width: 800px;
+}
+
+.tool-bar {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+
+    button {
+        margin-left: 10px;
+        background: #473bd4;
+        color: #fff;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .help {
+        background: transparent;
+        color: #000;
+    }
 }

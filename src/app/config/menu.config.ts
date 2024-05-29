@@ -7,17 +7,17 @@ export const MENU = [
     },
     {
         icon: 'fa-light fa-microphone',
-        title: 'Offline Speech Recognition',
+        title: 'aily ASR Module v1',
         route: '/asr'
     },
     {
         icon: 'fa-light fa-image-polaroid',
-        title: 'Offline speech recognition',
+        title: 'aily CV Module v1',
         route: '/cv'
     },
     {
         icon: 'fa-light fa-screwdriver-wrench',
-        title: 'Offline speech recognition',
+        title: 'aily Config Tool',
         route: '/ct'
     }
 ]
@@ -31,7 +31,7 @@ export const MENU2 = [
     },
     {
         icon: 'fa-light fa-house',
-        text: 'Github',
+        text: 'aily Website',
         url: 'https://aily.pro',
         position: 'bottom'
     }

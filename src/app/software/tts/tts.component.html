@@ -1,9 +1,13 @@
 <div class="software">
-    <!-- <div class="left-box block-box">
-        <app-markdown></app-markdown>
-    </div> -->
+    <div class="tool-bar">
+        <button nz-button class="connect-btn" (click)="connect()" [ngClass]="{'connect': port}">
+            <ng-container *ngIf="port;else device">已连接</ng-container>
+            <ng-template #device>连接设备</ng-template>
+        </button>
+        <button nz-button nzType="text" class="help"><i class="fa-light fa-circle-info"></i>使用帮助</button>
+    </div>
     <div class="mid-box">
-        <div class="block-box">
+        <!-- <div class="block-box">
             <div class="title">
                 <div>
                     <i class="fa-solid fa-link-simple"></i>
@@ -14,7 +18,7 @@
                 <ng-container *ngIf="port;else device">已连接</ng-container>
                 <ng-template #device>连接设备</ng-template>
             </button>
-        </div>
+        </div> -->
         <div class="block-box">
             <div class="title">
                 <div><i class="fa-solid fa-sliders"></i></div>
@@ -37,7 +41,8 @@
                     </div>
                     <div class="slider-box">
                         <!-- <i class="fa-regular fa-minus"></i> -->
-                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="volume" (ngModelChange)="settingchange()"></nz-slider>
+                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="volume"
+                            (ngModelChange)="settingchange()"></nz-slider>
                         <!-- <i class="fa-regular fa-plus"></i> -->
                     </div>
                 </div>
@@ -48,7 +53,8 @@
                     </div>
                     <div class="slider-box">
                         <!-- <i class="fa-regular fa-minus"></i> -->
-                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="speed" (ngModelChange)="settingchange()"></nz-slider>
+                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="speed"
+                            (ngModelChange)="settingchange()"></nz-slider>
                         <!-- <i class="fa-regular fa-plus"></i> -->
                     </div>
                 </div>
@@ -59,7 +65,8 @@
                     </div>
                     <div class="slider-box">
                         <!-- <i class="fa-regular fa-minus"></i> -->
-                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="pitch" (ngModelChange)="settingchange()"></nz-slider>
+                        <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="pitch"
+                            (ngModelChange)="settingchange()"></nz-slider>
                         <!-- <i class="fa-regular fa-plus"></i> -->
                     </div>
                 </div>
