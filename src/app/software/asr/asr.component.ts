@@ -30,4 +30,8 @@ import { NzSliderModule } from 'ng-zorro-antd/slider';
 })
 export class AsrComponent {
 
+  blockList = [
+    , , , ,
+  ]
+
 }
