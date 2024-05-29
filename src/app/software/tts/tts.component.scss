@@ -79,7 +79,7 @@
 
         nz-select {
             width: 100%;
-            margin-top: 10px;
+            margin-top: 5px;
 
             ::ng-deep {
                 .ant-select-selector {
@@ -93,7 +93,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 5px;
             position: relative;
 
             nz-slider {
@@ -155,7 +155,7 @@
     }
 
     .editor {
-        height: 100px;
+        height: 70px;
         margin-bottom: 15px;
         overflow: hidden;
         border-radius: 8px;
@@ -206,6 +206,7 @@
 .right-box {
     margin-left: 15px;
     height: calc(100vh - 85px);
+    max-width: 500px;
     flex-grow: 1;
 }
 
@@ -221,12 +222,6 @@ button {
     i {
         margin-right: 8px;
     }
-}
-
-
-.gencode {
-    border-bottom: 1px solid #e8e8e8;
-    margin-bottom: 6px;
 }
 
 .code-btn {

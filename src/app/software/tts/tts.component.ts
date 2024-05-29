@@ -86,6 +86,8 @@ export class TtsComponent {
       } else {
         this.customText = `[v${this.volume}]${this.customText}`
       }
+    } else {
+      this.customText = this.customText.replace(/\[v\d+\]/, ``)
     }
     if (this.speed != 5) {
       // 检测this.customText中是否已经有了语速设置
@@ -94,6 +96,8 @@ export class TtsComponent {
       } else {
         this.customText = `[s${this.speed}]${this.customText}`
       }
+    } else {
+      this.customText = this.customText.replace(/\[s\d+\]/, ``)
     }
     if (this.pitch != 5) {
       // 检测this.customText中是否已经有了语调设置
@@ -102,6 +106,8 @@ export class TtsComponent {
       } else {
         this.customText = `[t${this.pitch}]${this.customText}`
       }
+    } else {
+      this.customText = this.customText.replace(/\[t\d+\]/, ``)
     }
   }
 
