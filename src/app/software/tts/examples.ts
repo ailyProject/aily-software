@@ -40,11 +40,9 @@ export function loadArduinoCode(str) {
   
     genTTSBuffer(content, buffer, &bufferLength);
   
-    Serial.print("Generated buffer: ");
     for (size_t i = 0; i < bufferLength; i++) {
       Serial.write(buffer[i]);
     }
-    Serial.println();
   }
   
   void loop() {

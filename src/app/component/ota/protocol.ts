@@ -51,12 +51,12 @@ export function GET_SWORD(p: Uint8Array): number {
 }
 
 // 启英三代OTA芯片协议
-const OTA_RESET_CMD = "a5a55a5a000001050000000078563412"; // 复位指令-芯片使用的是小端模式
-const OTA_RESET_ANS = "a50f0000b00300acabff"; // 复位应答指令
-const OTA_REQUEST_CMD = "a50f0000a00300cfe8ff"; // 和bootloader握手指令
+export const OTA_RESET_CMD = "a5a55a5a000001050000000078563412"; // 复位指令-芯片使用的是小端模式
+export const OTA_RESET_ANS = "a50f0000b00300acabff"; // 复位应答指令
+export const OTA_REQUEST_CMD = "a50f0000a00300cfe8ff"; // 和bootloader握手指令
 
 // 分区信息结构体
-interface PartitionInfo {
+export interface PartitionInfo {
     version: number; // 分区版本
     address: number; // 分区起始地址
     size: number; // 分区大小
@@ -65,7 +65,7 @@ interface PartitionInfo {
 }
 
 // 分区表结构体
-interface PartitionTable {
+export interface PartitionTable {
     ManufacturerID: number; // 厂商ID
     ProductID: number[]; // 产品ID
     HWName: number[]; // 硬件名称
@@ -87,22 +87,25 @@ interface PartitionTable {
     PartitionTableChecksum: number; // 分区表校验值
 }
 
+export const PartitionTableSize = 144; // 分区表大小
+
+
 // 固件格式版本
-enum FwFmtVer {
+export enum FwFmtVer {
     FW_FMT_VER_1 = 1, // 固件格式版本1，现用于CI110X SDK和CI130X_SDK、CI230X_SDK、 CI231X_SDK
     FW_FMT_VER_2, // 固件格式版本2，现用于CI110X_SDK_Lite和CI112X_SDK
     FW_FMT_VER_MAX,
 }
 
 // 传输包原始数据类型，用于传输
-interface PackageRawData {
+export interface PackageRawData {
     data1: Uint8Array;
     data2: Uint8Array;
     data3: Uint8Array;
 }
 
 // 传输包解析结构类型，用于构造和解包
-interface PackageProperty {
+export interface PackageProperty {
     head?: number; // 包头
     data_length?: number; // 数据长度
     msg_type?: number; // 消息类型
@@ -114,7 +117,7 @@ interface PackageProperty {
 }
 
 // 传输包类型
-interface Package {
+export interface Package {
     raw_data?: PackageRawData;
     property?: PackageProperty;
 };
