@@ -24,14 +24,20 @@ export const MENU = [
 
 export const MENU2 = [
     {
+        icon: 'fa-light fa-cart-shopping',
+        title: 'Store',
+        url: 'https://shop555818949.taobao.com/',
+        position: 'bottom'
+    },
+    {
         icon: 'fa-brands fa-github',
-        text: 'Github',
+        title: 'Github',
         url: 'https://github.com/ailyproject',
         position: 'bottom'
     },
     {
         icon: 'fa-light fa-house',
-        text: 'aily Website',
+        title: 'aily Website',
         url: 'https://aily.pro',
         position: 'bottom'
     }

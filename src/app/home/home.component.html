@@ -9,7 +9,7 @@
         </ng-container>
         <div class="menu2 ccenter">
             <ng-container *ngFor="let item of MENU2">
-                <a *ngIf="item.url" class="item ccenter" href="{{item.url}}" target="_blank">
+                <a *ngIf="item.url" class="item ccenter" href="{{item.url}}" target="_blank" [nzTooltipTitle]="item.title" nzTooltipPlacement="right" nz-tooltip>
                     <i class="{{item.icon}}"></i>
                 </a>
             </ng-container>
