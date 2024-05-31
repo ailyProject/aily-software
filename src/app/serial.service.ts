@@ -96,23 +96,9 @@ export class SerialService {
     let lowByte = buffer_text_length & 0xFF;
     let buffer_length = new Uint8Array([highByte, lowByte]);
 
-    let buffer = concatUint8Arrays(buffer_head, buffer_length, buffer_cmd, buffer_encode, buffer_text);
+    let buffer = Uint8Array.from([...buffer_head, ...buffer_length, ...buffer_cmd, ...buffer_encode, ...buffer_text]);
     return buffer;
   }
-}
-
-function concatUint8Arrays(...arrays: Uint8Array[]): Uint8Array {
-  let totalLength = 0;
-  for (const arr of arrays) {
-    totalLength += arr.length;
-  }
-  const result = new Uint8Array(totalLength);
-  let length = 0;
-  for (const arr of arrays) {
-    result.set(arr, length);
-    length += arr.length;
-  }
-  return result;
 }
 
 function hexStringToUint8Array(hexString: string): Uint8Array {
