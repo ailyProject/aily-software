@@ -30,35 +30,100 @@
                 <div><i class="fa-solid fa-input-text"></i></div>
                 唤醒词
             </div>
-            <div class="test-box">
-
+            <div class="a-row">
+                <div class="left">
+                    唤醒词
+                    <input nz-input type="text">
+                </div>
+                <div class="right">
+                    <ng-container *ngFor="let block of blockList">
+                        <div class="block" [ngStyle]="{'background': block.background}">
+                            <div class="top" [ngStyle]="{'color': block.color}">
+                                <div class="icon ccenter" [ngStyle]="{'background': block.background2}">
+                                    <i class="{{block.icon}}"></i>
+                                </div>
+                                <div class="text">
+                                    {{block.title}}
+                                </div>
+                                <div class="dots">
+                                    <i class="fa-solid fa-grip-dots"></i>
+                                </div>
+                            </div>
+                            <div class="bot">
+                                <ng-container *ngIf="block.type=='io'">
+                                    <nz-select ngModel="lucy">
+                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                                    </nz-select>
+                                    <nz-select ngModel="lucy">
+                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                                    </nz-select>
+                                </ng-container>
+                                <ng-container *ngIf="block.type=='serial'">
+                                    <nz-select ngModel="lucy">
+                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                                    </nz-select>
+                                    <input nz-input placeholder="Basic usage" type="number" />
+                                </ng-container>
+                                <ng-container *ngIf="block.type=='pwm'">
+                                    <nz-select ngModel="pwm">
+                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                                    </nz-select>
+                                    <nz-select ngModel="lucy">
+                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                                    </nz-select>
+                                    <input nz-input placeholder="Basic usage" type="number" />
+                                </ng-container>
+                                <ng-container *ngIf="block.type=='play'">
+                                    <input nz-input placeholder="Basic usage" type="number" />
+                                </ng-container>
+                                <ng-container *ngIf="block.type=='delay'">
+                                    <input nz-input placeholder="Basic usage" type="number" />
+                                </ng-container>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
-        </div>
-        <div class="block-box">
             <div class="title">
-                <div><i class="fa-solid fa-input-pipe"></i></div>
-                指令
+                <div><i class="fa-solid fa-microphone"></i></div>
+                语音指令
+                <div><i class="fa-regular fa-plus"></i></div>
             </div>
-            <div class="custom-input">
+            <div class="a-row">
+                <div class="left">
+                    指令1
+                    <input nz-input type="text">
+                </div>
+                <div class="right">
+                    <div style="text-align: center;color:#ccc">拖拽模块到这里，编排触发动作</div>
 
+                </div>
             </div>
-        </div>
-        <div class="block-box">
             <div class="title">
-                <div><i class="fa-solid fa-laptop-code"></i></div>
-                IO输入
+                <div><i class="fa-solid fa-microchip"></i></div>
+                I/O中断
+                <div><i class="fa-regular fa-plus"></i></div>
             </div>
-            <div class="hex-box">
+            <div class="a-row">
+                <div class="left">
+                    <input nz-input type="text">
+                </div>
+                <div class="right">
 
+                </div>
             </div>
-        </div>
-        <div class="block-box">
             <div class="title">
                 <div><i class="fa-solid fa-laptop-code"></i></div>
                 串口输入
+                <div><i class="fa-regular fa-plus"></i></div>
             </div>
-            <div class="hex-box">
+            <div class="a-row">
+                <div class="left">
+                    <input nz-input type="text">
+                </div>
+                <div class="right">
 
+                </div>
             </div>
         </div>
     </div>
@@ -68,9 +133,52 @@
             可用模块
         </div>
         <div>
-            <div class="block" *ngFor="let block of blockList">
-                block
-            </div>
+            <ng-container *ngFor="let block of blockList">
+                <div class="block" [ngStyle]="{'background': block.background}">
+                    <div class="top" [ngStyle]="{'color': block.color}">
+                        <div class="icon ccenter" [ngStyle]="{'background': block.background2}">
+                            <i class="{{block.icon}}"></i>
+                        </div>
+                        <div class="text">
+                            {{block.title}}
+                        </div>
+                        <div class="dots">
+                            <i class="fa-solid fa-grip-dots"></i>
+                        </div>
+                    </div>
+                    <div class="bot">
+                        <ng-container *ngIf="block.type=='io'">
+                            <nz-select ngModel="lucy">
+                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                            </nz-select>
+                            <nz-select ngModel="lucy">
+                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                            </nz-select>
+                        </ng-container>
+                        <ng-container *ngIf="block.type=='serial'">
+                            <nz-select ngModel="lucy">
+                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                            </nz-select>
+                            <input nz-input placeholder="Basic usage" type="number" />
+                        </ng-container>
+                        <ng-container *ngIf="block.type=='pwm'">
+                            <nz-select ngModel="pwm">
+                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                            </nz-select>
+                            <nz-select ngModel="lucy">
+                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                            </nz-select>
+                            <input nz-input placeholder="Basic usage" type="number" />
+                        </ng-container>
+                        <ng-container *ngIf="block.type=='play'">
+                            <input nz-input placeholder="Basic usage" type="number" />
+                        </ng-container>
+                        <ng-container *ngIf="block.type=='delay'">
+                            <input nz-input placeholder="Basic usage" type="number" />
+                        </ng-container>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </div>
 </div>

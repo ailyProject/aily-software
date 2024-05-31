@@ -6,10 +6,10 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { OtaService } from './ota.service';
+import { blockList } from './block/block';
 
 @Component({
   selector: 'app-asr',
@@ -31,9 +31,7 @@ import { OtaService } from './ota.service';
 })
 export class AsrComponent {
 
-  blockList = [
-    , , , ,
-  ]
+  blockList = blockList
 
   constructor(
     private otaService: OtaService
