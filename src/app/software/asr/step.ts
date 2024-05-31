@@ -1,5 +1,5 @@
 //ota当前主要步骤
-enum mainStep {
+export enum mainStep {
     CUR_MAIN_STEP_IDEL,                             //空闲状态
     CUR_MAIN_STEP_CHECK_UPDATER_PARTITION_INFO,     //检测升级信息
     CUR_MAIN_STEP_UPDATE_USERCODE,                  //更新代码分区
@@ -10,7 +10,7 @@ enum mainStep {
 };
 
 //ota各个子步骤
-enum subStep {
+export enum subStep {
     CUR_SUB_STEP_RESET_CHIP = 0,                                     //复位芯片
     CUR_SBU_STEP_RESET_ANS = 1,
     CUR_SUB_STEP_RESET_SYNC_CHIP = 2,                                //复位成功后的握手同步

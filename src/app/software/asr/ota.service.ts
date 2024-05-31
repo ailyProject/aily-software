@@ -13,6 +13,9 @@ import {
   PARTITION_USER2_FLAG_MASK, PROGRAM_AGENT_ADDR,
   Package, PackageProperty, PartitionTableSize
 } from './protocol';
+import { subStep, mainStep } from './step';
+
+const serial = navigator['serial']
 
 @Injectable({
   providedIn: 'root'
@@ -43,16 +46,54 @@ export class OtaService {
   partitionsInfoInDevice = null;
   updateInfo = null;
 
-  constructor(
-    private serialService: SerialService
-  ) { }
+  port;
 
-  async connect() {
-    this.serialService.connect();
+  constructor() { }
+
+  connect(baudRate = 115200) {
+    return new Promise(async (resolve, reject) => {
+      if ('serial' in navigator) {
+        try {
+          this.port = await serial.requestPort();
+          console.log('Serial port:', this.port);
+          await this.port.open({ baudRate: baudRate, bufferSize: 5120 });
+          this.port.readable.pipeTo(new WritableStream({
+            write: (data) => {
+              const textDecoder = new TextDecoder();
+              console.log('Received data:', textDecoder.decode(data));
+            }
+          }));
+          resolve(true)
+        } catch (err) {
+          console.error('There was an error opening the serial port:', err);
+          resolve(false)
+        }
+      } else {
+        console.error('Web Serial API not supported.');
+        resolve(false)
+      }
+    });
   }
 
-  async write(data: Uint8Array) {
+  disconnect() {
 
+  }
+
+  async write(data: Uint8Array | string) {
+
+  }
+
+  runOTA() {
+    // 选择串口
+
+    // 加载固件
+
+    // 发送复位指令
+    this.sendResetCmd();
+    // 
+
+
+    this.StartOTAProcess();
   }
 
   sendResetCmdTimer;
@@ -382,9 +423,9 @@ export class OtaService {
 
   //发送复位业务固件指令
   sendResetCmd(): void {
-    this.serialService.disconnect();
-    this.serialService.connect();
-    this.serialService.send(OTA_RESET_CMD)
+    this.disconnect();
+    this.connect();
+    this.write(OTA_RESET_CMD)
 
     // if (resetTryCount++ > 200) {   //尝试200次
     //   syncUpdaterTryCount = 0;
@@ -396,9 +437,9 @@ export class OtaService {
 
   // 发送下载更新器指令
   async sendDownLoadUpdaterCmd() {
-    this.serialService.disconnect();
-    this.serialService.connect();
-    this.serialService.send(OTA_REQUEST_CMD)
+    this.disconnect();
+    this.connect();
+    this.write(OTA_REQUEST_CMD)
     // const OTA_REQUEST_CMD = "your command here";
     // await this.sendRequestToServer('write', this.hexStringToByteArray(OTA_REQUEST_CMD));
     // if (this.syncUpdaterTryCount++ > 200) {   //尝试200次
@@ -419,7 +460,7 @@ export class OtaService {
       clearInterval(this.updateTimingTimer)
       clearTimeout(this.sendResetCmdTimer)
       clearInterval(this.sendBootloaderHandShakeCmdTimer)
-      await this.serialService.disconnect();
+      // await this.serialService.disconnect();
     }
   }
 
@@ -527,6 +568,7 @@ export class OtaService {
     console.log("updateInfo->SWName = ", this.updateInfo.SWName);
     console.log("updateInfo->SWVersion = ", this.updateInfo.SWVersion);
 
+    return ret;
     // ... rest of the code follows the same pattern of conversion
     // replace qDebug() with console.log()
     // replace this-> with this.
@@ -534,7 +576,7 @@ export class OtaService {
     // replace pointers with direct object references
   }
 
-  sendPartitionTable(pSrcData: Uint8Array, size: number, reqSize: number, reqOffset: number): number {
+  sendPartitionTable(pSrcData: Uint8Array, size: number, reqSize: number, reqOffset: number) {
     let pDstData = new Uint8Array(4096 + 4);
     pDstData.fill(0);
     let rst = 0;
@@ -570,6 +612,7 @@ export class OtaService {
     // this.newPackage(MSG_CMD_UPDATE_WRITE, MSG_TYPE_ACK, 0, pDstData, reqSize + 4);
     this.sendPackage(package1);
     // this.DelPackage(package);
+    return 0;
   }
 
   //分区表资源初始化

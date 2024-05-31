@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { NzCodeEditorModule } from 'ng-zorro-antd/code-editor';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
+import { OtaService } from './ota.service';
 
 @Component({
   selector: 'app-asr',
@@ -33,5 +34,14 @@ export class AsrComponent {
   blockList = [
     , , , ,
   ]
+
+  constructor(
+    private otaService: OtaService
+  ) { }
+
+  runOTA() {
+    console.log('runOTA')
+    this.otaService.runOTA()
+  }
 
 }

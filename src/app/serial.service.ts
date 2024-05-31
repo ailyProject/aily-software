@@ -41,7 +41,7 @@ export class SerialService {
     }
   }
 
-  connectAndListen(baudRate = 115200, callback: (data) => void) {
+  connectAndListen(baudRate = 115200) {
     return new Promise(async (resolve, reject) => {
       if ('serial' in navigator) {
         try {
