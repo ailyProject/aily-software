@@ -35,53 +35,7 @@
                     唤醒词
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES">
-                    <ng-container *ngFor="let block of blockList">
-                        <div class="block" [ngStyle]="{'background': block.background}">
-                            <div class="top" [ngStyle]="{'color': block.color}">
-                                <div class="icon ccenter" [ngStyle]="{'background': block.background2}">
-                                    <i class="{{block.icon}}"></i>
-                                </div>
-                                <div class="text">
-                                    {{block.title}}
-                                </div>
-                                <div class="dots">
-                                    <i class="fa-solid fa-grip-dots"></i>
-                                </div>
-                            </div>
-                            <div class="bot">
-                                <ng-container *ngIf="block.type=='io'">
-                                    <nz-select ngModel="lucy">
-                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                                    </nz-select>
-                                    <nz-select ngModel="lucy">
-                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                                    </nz-select>
-                                </ng-container>
-                                <ng-container *ngIf="block.type=='serial'">
-                                    <nz-select ngModel="lucy">
-                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                                    </nz-select>
-                                    <input nz-input placeholder="Basic usage" type="number" />
-                                </ng-container>
-                                <ng-container *ngIf="block.type=='pwm'">
-                                    <nz-select ngModel="pwm">
-                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                                    </nz-select>
-                                    <nz-select ngModel="lucy">
-                                        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                                    </nz-select>
-                                    <input nz-input placeholder="Basic usage" type="number" />
-                                </ng-container>
-                                <ng-container *ngIf="block.type=='play'">
-                                    <input nz-input placeholder="Basic usage" type="number" />
-                                </ng-container>
-                                <ng-container *ngIf="block.type=='delay'">
-                                    <input nz-input placeholder="Basic usage" type="number" />
-                                </ng-container>
-                            </div>
-                        </div>
-                    </ng-container>
+                <div class="right" dragula="VAMPIRES" id="weekCmd">
                 </div>
             </div>
             <div class="title">
@@ -95,8 +49,8 @@
                     语音指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES">
-                    <div style="text-align: center;color:#ccc">拖拽模块到这里，编排触发动作</div>
+                <div class="right" dragula="VAMPIRES" id="speechCmd">
+                    <!-- <div style="text-align: center;color:#ccc">拖拽模块到这里，编排触发动作</div> -->
 
                 </div>
             </div>
@@ -104,14 +58,14 @@
                 <div><i class="fa-solid fa-microchip"></i></div>
                 I/O中断
                 <button class="add-btn" nz-button nzType="text" (click)="addIntCmd()"><i
-                    class="fa-regular fa-plus"></i>添加</button>
+                        class="fa-regular fa-plus"></i>添加</button>
             </div>
             <div class="a-row" *ngFor="let item of intCmdList;index as i">
                 <div class="left">
                     IO中断指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES">
+                <div class="right" dragula="VAMPIRES" id="intCmd">
 
                 </div>
             </div>
@@ -119,14 +73,14 @@
                 <div><i class="fa-solid fa-laptop-code"></i></div>
                 串口输入
                 <button class="add-btn" nz-button nzType="text" (click)="addSerialCmd()"><i
-                    class="fa-regular fa-plus"></i>添加</button>
+                        class="fa-regular fa-plus"></i>添加</button>
             </div>
             <div class="a-row" *ngFor="let item of serialCmdList;index as i">
                 <div class="left">
                     串口指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES">
+                <div class="right" dragula="VAMPIRES" id="serialCmd">
 
                 </div>
             </div>
@@ -137,130 +91,10 @@
             <div><i class="fa-solid fa-brackets-curly"></i></div>
             可用模块
         </div>
-        <div>
+        <div id="block-bar" dragula="VAMPIRES">
             <ng-container *ngFor="let block of blockList">
-                <div class="block" [ngStyle]="{'background': block.background}">
-                    <div class="top" [ngStyle]="{'color': block.color}">
-                        <div class="icon ccenter" [ngStyle]="{'background': block.background2}">
-                            <i class="{{block.icon}}"></i>
-                        </div>
-                        <div class="text">
-                            {{block.title}}
-                        </div>
-                        <div class="dots">
-                            <i class="fa-solid fa-grip-dots"></i>
-                        </div>
-                    </div>
-                    <div class="bot">
-                        <ng-container *ngIf="block.type=='io'">
-                            <nz-select ngModel="lucy">
-                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                            </nz-select>
-                            <nz-select ngModel="lucy">
-                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                            </nz-select>
-                        </ng-container>
-                        <ng-container *ngIf="block.type=='serial'">
-                            <nz-select ngModel="lucy">
-                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                            </nz-select>
-                            <input nz-input placeholder="Basic usage" type="number" />
-                        </ng-container>
-                        <ng-container *ngIf="block.type=='pwm'">
-                            <nz-select ngModel="pwm">
-                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                            </nz-select>
-                            <nz-select ngModel="lucy">
-                                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-                            </nz-select>
-                            <input nz-input placeholder="Basic usage" type="number" />
-                        </ng-container>
-                        <ng-container *ngIf="block.type=='play'">
-                            <input nz-input placeholder="Basic usage" type="number" />
-                        </ng-container>
-                        <ng-container *ngIf="block.type=='delay'">
-                            <input nz-input placeholder="Basic usage" type="number" />
-                        </ng-container>
-                    </div>
-                </div>
+                <app-block [block]="block"></app-block>
             </ng-container>
         </div>
     </div>
 </div>
-
-
-<!-- <div class="container">
-    <div class="header">
-        <h1>产品配置</h1>
-        <div class="options">
-            <label for="voice">语音播放设置</label>
-            <select id="voice">
-                <option value="温柔女声">温柔女声</option>
-            </select>
-            <label for="volume">音量</label>
-            <input type="number" id="volume" value="1">
-            <label for="language">语言</label>
-            <input type="number" id="language" value="1">
-        </div>
-    </div>
-    <div class="main">
-        <div class="config-section">
-            <div class="config-item">
-                <label for="uart">通信串口设置</label>
-                <select id="uart">
-                    <option value="UART2">UART2</option>
-                </select>
-                <label for="baudrate">波特率</label>
-                <input type="number" id="baudrate" value="115200">
-            </div>
-            <div class="config-item">
-                <label for="trigger-word">唤醒词</label>
-                <input type="text" id="trigger-word" value="你好 aily">
-            </div>
-            <div class="config-item">
-                <label for="command1">指令1</label>
-                <input type="text" id="command1" value="开灯">
-                <label for="action1">动作1</label>
-                <input type="text" id="action1">
-                <label for="delay1">延迟</label>
-                <input type="number" id="delay1" value="1000">
-            </div>
-            <div class="config-item">
-                <label for="command2">指令2</label>
-                <input type="text" id="command2" value="关灯">
-                <label for="action2">动作2</label>
-                <input type="text" id="action2">
-                <label for="delay2">延迟</label>
-                <input type="number" id="delay2" value="1000">
-            </div>
-            <div class="config-item">
-                <label for="command3">指令3</label>
-                <input type="text" id="command3" value="开启风扇">
-                <label for="action3">动作3</label>
-                <input type="text" id="action3">
-                <label for="delay3">延迟</label>
-                <input type="number" id="delay3" value="1000">
-            </div>
-            <button class="btn btn-primary">添加语音指令</button>
-        </div>
-        <div class="config-section">
-            <label for="io-input">IO输入</label>
-            <select id="io-input">
-                <option value="GPIO10">GPIO10</option>
-            </select>
-            <select id="io-state">
-                <option value="HIGH">HIGH</option>
-            </select>
-            <button class="btn btn-primary">添加IO输入</button>
-        </div>
-        <div class="config-section">
-            <label for="uart-input">串口输入</label>
-            <input type="text" id="uart-input" value="ok">
-            <button class="btn btn-primary">添加串口输入</button>
-        </div>
-        <div class="action-buttons">
-            <button class="btn btn-primary">下载配置</button>
-            <button class="btn btn-secondary">保存配置</button>
-        </div>
-    </div>
-</div> -->

@@ -36,17 +36,7 @@
     }
 }
 
-.connect-btn {
-    border-radius: 6px;
-    background: #f7f7f7;
-    border: none;
-    width: 100px;
 
-    &.connect {
-        background: #473bd4;
-        color: #FFF;
-    }
-}
 
 .top {
     display: flex;
@@ -172,84 +162,20 @@
     flex-grow: 1;
 }
 
-.block {
-    margin-bottom: 10px;
-    height: 75px;
-    border-radius: 10px;
-    padding: 8px;
-    position: relative;
-    box-shadow: 0 0 2px #e1e1e1;
-    cursor: pointer;
-
-    &:hover {
-        box-shadow: 0 0 10px #CCC;
-    }
-
-    .top {
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-
-        .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        .dots {
-            position: absolute;
-            right: 10px;
-            opacity: 0.5;
-        }
-    }
-
-    .bot {
-        height: 30px;
-        display: flex;
-        margin-top: 5px;
-
-        input {
-            height: 28px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        nz-select {
-            height: 28px;
-            border-radius: 5px;
-            margin-right: 8px;
-
-            ::ng-deep {
-                nz-select-top-control {
-                    height: 28px;
-                    border-radius: 5px;
-                    border: none;
-                }
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-    }
-}
-
 .a-row {
     padding: 8px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     border: 1px solid #f7f7f7;
-    height: 102px;
+    height: 97px;
     position: relative;
 
     .left {
         width: 150px;
         flex-shrink: 0;
         height: 100%;
-        // border: 1px solid #f7f7f7;
+        font-size: 12px;
         border-radius: 12px 0 0 12px;
         background: #eeeeee;
         padding: 5px 20px 5px 10px;
@@ -277,7 +203,7 @@
         overflow-x: scroll;
         padding: 5px 10px;
 
-        .block {
+        app-block {
             margin-right: 10px;
         }
 

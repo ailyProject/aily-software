@@ -9,8 +9,9 @@ import { CommonModule } from '@angular/common';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { OtaService } from './ota.service';
-import { blockList } from './block/block';
-import { DragulaModule } from 'ng2-dragula';
+import { blockList } from './block/block.config';
+import { DragulaModule, DragulaService } from 'ng2-dragula';
+import { BlockComponent } from './block/block.component';
 
 @Component({
   selector: 'app-asr',
@@ -22,11 +23,10 @@ import { DragulaModule } from 'ng2-dragula';
     NzInputNumberModule,
     NzInputModule,
     NzButtonModule,
-    MarkdownComponent,
-    // NzCodeEditorModule,
     NzSelectModule,
     NzSliderModule,
-    DragulaModule
+    DragulaModule,
+    BlockComponent
   ],
   templateUrl: './asr.component.html',
   styleUrl: './asr.component.scss'
@@ -40,8 +40,20 @@ export class AsrComponent {
   serialCmdList = [{}]
 
   constructor(
-    private otaService: OtaService
-  ) { }
+    private otaService: OtaService,
+    private dragulaService: DragulaService
+  ) {
+    this.dragulaService.createGroup('VAMPIRES', {
+      copy: (el, source) => {
+        return source.id === 'block-bar';
+      },
+      accepts: (el, target, source, sibling) => {
+        return target.id !== 'block-bar';
+      },
+      direction: 'horizontal'
+    });
+
+  }
 
   runOTA() {
     console.log('runOTA')
@@ -53,7 +65,7 @@ export class AsrComponent {
     this.cmdList.push({})
   }
 
-  
+
   addIntCmd() {
     this.intCmdList.push({})
   }
