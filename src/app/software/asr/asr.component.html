@@ -35,7 +35,7 @@
                     唤醒词
                     <input nz-input type="text">
                 </div>
-                <div class="right">
+                <div class="right" dragula="VAMPIRES">
                     <ng-container *ngFor="let block of blockList">
                         <div class="block" [ngStyle]="{'background': block.background}">
                             <div class="top" [ngStyle]="{'color': block.color}">
@@ -87,14 +87,15 @@
             <div class="title">
                 <div><i class="fa-solid fa-microphone"></i></div>
                 语音指令
-                <div><i class="fa-regular fa-plus"></i></div>
+                <button class="add-btn" nz-button nzType="text" (click)="addCmd()"><i
+                        class="fa-regular fa-plus"></i>添加</button>
             </div>
-            <div class="a-row">
+            <div class="a-row" *ngFor="let item of cmdList;index as i">
                 <div class="left">
-                    指令1
+                    语音指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right">
+                <div class="right" dragula="VAMPIRES">
                     <div style="text-align: center;color:#ccc">拖拽模块到这里，编排触发动作</div>
 
                 </div>
@@ -102,26 +103,30 @@
             <div class="title">
                 <div><i class="fa-solid fa-microchip"></i></div>
                 I/O中断
-                <div><i class="fa-regular fa-plus"></i></div>
+                <button class="add-btn" nz-button nzType="text" (click)="addIntCmd()"><i
+                    class="fa-regular fa-plus"></i>添加</button>
             </div>
-            <div class="a-row">
+            <div class="a-row" *ngFor="let item of intCmdList;index as i">
                 <div class="left">
+                    IO中断指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right">
+                <div class="right" dragula="VAMPIRES">
 
                 </div>
             </div>
             <div class="title">
                 <div><i class="fa-solid fa-laptop-code"></i></div>
                 串口输入
-                <div><i class="fa-regular fa-plus"></i></div>
+                <button class="add-btn" nz-button nzType="text" (click)="addSerialCmd()"><i
+                    class="fa-regular fa-plus"></i>添加</button>
             </div>
-            <div class="a-row">
+            <div class="a-row" *ngFor="let item of serialCmdList;index as i">
                 <div class="left">
+                    串口指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right">
+                <div class="right" dragula="VAMPIRES">
 
                 </div>
             </div>

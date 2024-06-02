@@ -10,6 +10,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { OtaService } from './ota.service';
 import { blockList } from './block/block';
+import { DragulaModule } from 'ng2-dragula';
 
 @Component({
   selector: 'app-asr',
@@ -24,7 +25,8 @@ import { blockList } from './block/block';
     MarkdownComponent,
     // NzCodeEditorModule,
     NzSelectModule,
-    NzSliderModule
+    NzSliderModule,
+    DragulaModule
   ],
   templateUrl: './asr.component.html',
   styleUrl: './asr.component.scss'
@@ -32,6 +34,10 @@ import { blockList } from './block/block';
 export class AsrComponent {
 
   blockList = blockList
+
+  cmdList = [{}]
+  intCmdList = [{}]
+  serialCmdList = [{}]
 
   constructor(
     private otaService: OtaService
@@ -41,5 +47,20 @@ export class AsrComponent {
     console.log('runOTA')
     this.otaService.runOTA()
   }
+
+
+  addCmd() {
+    this.cmdList.push({})
+  }
+
+  
+  addIntCmd() {
+    this.intCmdList.push({})
+  }
+
+  addSerialCmd() {
+    this.serialCmdList.push({})
+  }
+
 
 }
