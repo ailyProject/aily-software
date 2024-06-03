@@ -62,7 +62,9 @@ export class AsrComponent {
     this.subs.add(this.dragulaService.dropModel('VAMPIRES')
       .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
         // console.log('dropModel', el, target, source, sourceModel, targetModel, item)
-
+        setTimeout(() => {
+          this.save()
+        }, 2000)
       })
     );
 
@@ -72,6 +74,31 @@ export class AsrComponent {
       })
     );
 
+    this.load()
+
+  }
+
+
+  // 将数据暂存储到localStorage
+  save() {
+    const data = {
+      weekCmdList: this.weekCmdList,
+      asrCmdList: this.asrCmdList,
+      intCmdList: this.intCmdList,
+      serialCmdList: this.serialCmdList
+    }
+    localStorage.setItem('asr', JSON.stringify(data))
+  }
+
+  // 从localStorage中获取数据
+  load() {
+    const data = JSON.parse(localStorage.getItem('asr'))
+    if (data) {
+      this.weekCmdList = data.weekCmdList
+      this.asrCmdList = data.asrCmdList
+      this.intCmdList = data.intCmdList
+      this.serialCmdList = data.serialCmdList
+    }
   }
 
   runOTA() {
