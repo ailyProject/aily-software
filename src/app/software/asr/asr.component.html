@@ -1,6 +1,6 @@
 <div class="software">
     <div class="tool-bar">
-        <button nz-button>下载固件</button>
+        <button nz-button (click)="test()">下载固件</button>
         <button nz-button nzType="primary" (click)="runOTA()">烧录固件</button>
         <button nz-button nzType="text" class="help"><i class="fa-light fa-circle-info"></i>使用帮助</button>
     </div>
@@ -13,6 +13,47 @@
                     </div>
                     语音播放
                 </div>
+                <div class="top">
+                    <div class="setting-item">
+                        <div class="line ccenter">
+                            <div class="ccenter"><i class="fa-solid fa-users"></i></div>
+                            音色
+                        </div>
+                        <nz-select ngModel="温柔女声">
+                            <nz-option nzValue="温柔女声" nzLabel="温柔女声"></nz-option>
+                        </nz-select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="line ccenter">
+                            <div class="ccenter"><i class="fa-solid fa-volume"></i></div>
+                            音量
+                        </div>
+                        <div class="slider-box">
+                            <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="speech.volume"
+                                (ngModelChange)="settingchange()"></nz-slider>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="line ccenter">
+                            <div class="ccenter"><i class="fa-solid fa-comment-dots"></i></div>
+                            语速
+                        </div>
+                        <div class="slider-box">
+                            <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="speech.speed"
+                                (ngModelChange)="settingchange()"></nz-slider>
+                        </div>
+                    </div>
+                    <!-- <div class="setting-item">
+                        <div class="line ccenter">
+                            <div class="ccenter"><i class="fa-solid fa-explosion"></i></div>
+                            语调
+                        </div>
+                        <div class="slider-box">
+                            <nz-slider [nzMin]="0" [nzMax]="9" [(ngModel)]="pitch"
+                                (ngModelChange)="settingchange()"></nz-slider>
+                        </div>
+                    </div> -->
+                </div>
             </div>
             <div class="block-box">
                 <div class="title">
@@ -20,12 +61,29 @@
                     串口通信
                 </div>
                 <div class="top">
-
+                    <div class="setting-item">
+                        <div class="line ccenter">
+                            <div class="ccenter"><i class="fa-solid fa-pager"></i></div>
+                            串口
+                        </div>
+                        <nz-select [(ngModel)]="serial.port">
+                            <nz-option nzValue="UART2" nzLabel="UART2"></nz-option>
+                        </nz-select>
+                    </div>
+                    <div class="setting-item">
+                        <div class="line ccenter">
+                            <div class="ccenter"><i class="fa-solid fa-monitor-waveform"></i></div>
+                            波特率
+                        </div>
+                        <div class="slider-box">
+                            <input nz-input type="number" [(ngModel)]="serial.baudrate">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="block-box">
+        <div class="block-box cmd-box">
             <div class="title">
                 <div><i class="fa-solid fa-input-text"></i></div>
                 唤醒词
@@ -35,23 +93,24 @@
                     唤醒词
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES" id="weekCmd">
+                <div class="right" dragula="VAMPIRES" id="weekCmd" [(dragulaModel)]='weekCmdList'>
+                    <app-block *ngFor="let block of weekCmdList" [block]="block"></app-block>
                 </div>
             </div>
             <div class="title">
                 <div><i class="fa-solid fa-microphone"></i></div>
                 语音指令
-                <button class="add-btn" nz-button nzType="text" (click)="addCmd()"><i
+                <button class="add-btn" nz-button nzType="text" (click)="addAsrCmd()"><i
                         class="fa-regular fa-plus"></i>添加</button>
             </div>
-            <div class="a-row" *ngFor="let item of cmdList;index as i">
+            <div class="a-row" *ngFor="let subList of asrCmdList;index as i">
                 <div class="left">
                     语音指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES" id="speechCmd">
+                <div class="right" dragula="VAMPIRES" id="speechCmd" [(dragulaModel)]='asrCmdList[i]'>
                     <!-- <div style="text-align: center;color:#ccc">拖拽模块到这里，编排触发动作</div> -->
-
+                    <app-block *ngFor="let block of subList" [block]="block"></app-block>
                 </div>
             </div>
             <div class="title">
@@ -60,13 +119,13 @@
                 <button class="add-btn" nz-button nzType="text" (click)="addIntCmd()"><i
                         class="fa-regular fa-plus"></i>添加</button>
             </div>
-            <div class="a-row" *ngFor="let item of intCmdList;index as i">
+            <div class="a-row" *ngFor="let subList of intCmdList;index as i">
                 <div class="left">
                     IO中断指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES" id="intCmd">
-
+                <div class="right" dragula="VAMPIRES" id="intCmd" [(dragulaModel)]='intCmdList[i]'>
+                    <app-block *ngFor="let block of subList" [block]="block"></app-block>
                 </div>
             </div>
             <div class="title">
@@ -75,13 +134,13 @@
                 <button class="add-btn" nz-button nzType="text" (click)="addSerialCmd()"><i
                         class="fa-regular fa-plus"></i>添加</button>
             </div>
-            <div class="a-row" *ngFor="let item of serialCmdList;index as i">
+            <div class="a-row" *ngFor="let subList of serialCmdList;index as i">
                 <div class="left">
                     串口指令{{i}}
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES" id="serialCmd">
-
+                <div class="right" dragula="VAMPIRES" id="serialCmd" [(dragulaModel)]='serialCmdList[i]'>
+                    <app-block *ngFor="let block of subList" [block]="block"></app-block>
                 </div>
             </div>
         </div>
@@ -91,7 +150,7 @@
             <div><i class="fa-solid fa-brackets-curly"></i></div>
             可用模块
         </div>
-        <div id="block-bar" dragula="VAMPIRES">
+        <div id="block-bar" dragula="VAMPIRES" [(dragulaModel)]='blockList'>
             <ng-container *ngFor="let block of blockList">
                 <app-block [block]="block"></app-block>
             </ng-container>
