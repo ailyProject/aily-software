@@ -26,7 +26,8 @@
         width: 70px !important;
         cursor: pointer;
         color: #666;
-        &:hover{
+
+        &:hover {
             color: rgba(71, 59, 212, 1);
         }
 
@@ -132,7 +133,8 @@
 }
 
 .left-box {
-    width: calc(100% - 315px);
+    width: calc(100% - 230px);
+    flex-grow: 0;
     position: relative;
 
     .rrow {
@@ -158,57 +160,69 @@
 .right-box {
     margin-left: 15px;
     height: calc(100vh - 85px);
-    max-width: 300px;
-    flex-grow: 1;
+    width: 210px;
+    // flex-grow: 1;
+
+    app-block {
+        ::ng-deep {
+            .block {
+                margin-bottom: 10px;
+            }
+        }
+    }
 }
 
 .a-row {
-    padding: 8px;
+    // padding: 8px;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    border: 1px solid #f7f7f7;
-    height: 97px;
+    border: 1px solid #eee;
     position: relative;
+    margin-bottom: 10px;
+    height: 84px;
+    padding-left: 8px;
 
     .left {
         width: 150px;
+        height: 68px;
         flex-shrink: 0;
-        height: 100%;
         font-size: 12px;
         border-radius: 12px 0 0 12px;
         background: #eeeeee;
-        padding: 5px 20px 5px 10px;
+        padding: 5px 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        position: relative;
+        
 
         input {
             margin-top: 3px;
             height: 28px;
             border-radius: 5px;
             border: none;
-            background: #f7f7f7;
+            background: #fafafa;
+            width: 100%;
         }
     }
 
     .right {
         flex-grow: 1;
-        margin-left: -12px;
-        background: rgba(247, 247, 247, 1);
+        margin-left: 10px;
         border-radius: 12px;
-        height: 100%;
+        height: 84px;
         display: flex;
         overflow-y: hidden;
         overflow-x: scroll;
-        padding: 5px 10px;
+        padding-top: 8px;
 
         app-block {
             margin-right: 10px;
         }
 
         &::-webkit-scrollbar {
-            height: 2px; // 设置滚动条宽度
+            height: 6px; // 设置滚动条宽度
         }
 
         &::-webkit-scrollbar-track {
@@ -216,7 +230,7 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background: rgba(0, 0, 0, 0.5); // 设置滚动条颜色和透明度
+            background: rgba(165, 165, 165, 0.5); // 设置滚动条颜色和透明度
             border-radius: 5px; // 设置滚动条圆角
         }
     }
