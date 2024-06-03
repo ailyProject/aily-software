@@ -37,105 +37,6 @@
     }
 }
 
-
-
-.top {
-    display: flex;
-
-    .setting-item {
-        margin-right: 15px;
-        background: #f7f7f7;
-        border-radius: 12px;
-        padding: 8px;
-        width: 160px;
-        position: relative;
-
-        .line {
-            justify-content: flex-start;
-            height: 28px;
-
-            >div {
-                width: 28px;
-                height: 28px;
-                margin-right: 6px;
-            }
-        }
-
-        &:nth-child(1) {
-            i {
-                color: rgba(250, 155, 67, 1);
-            }
-        }
-
-        &:nth-child(2) {
-            i {
-                color: rgba(39, 230, 47, 1);
-            }
-        }
-
-        &:nth-child(3) {
-            i {
-                color: rgba(72, 124, 255, 1);
-            }
-        }
-
-        &:nth-child(4) {
-            margin-right: 0;
-
-            i {
-                color: rgba(74, 222, 232, 1);
-            }
-        }
-
-        nz-select {
-            width: 100%;
-
-            ::ng-deep {
-                .ant-select-selector {
-                    border: none;
-                    border-radius: 6px;
-                }
-            }
-        }
-
-        input {
-            border: none;
-            border-radius: 6px;
-        }
-
-        .slider-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-
-            nz-slider {
-                width: 100%;
-
-                ::ng-deep {
-                    .ant-slider-rail {
-                        background: #d6d6d6;
-                    }
-                }
-            }
-
-            i {
-                color: #666;
-                font-size: 12px;
-                cursor: pointer;
-            }
-
-            i:first-child {
-                margin-right: 10px;
-            }
-
-            i:last-child {
-                margin-left: 10px;
-            }
-        }
-    }
-}
-
 .left-box {
     width: calc(100% - 230px);
     flex-grow: 0;
@@ -197,7 +98,7 @@
         height: 68px;
         flex-shrink: 0;
         font-size: 12px;
-        border-radius: 12px 0 0 12px;
+        border-radius: 10px 0 0 10px;
         background: #eeeeee;
         padding: 5px 10px;
         display: flex;

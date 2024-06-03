@@ -30,9 +30,10 @@
             <nz-select ngModel="GPIO2" [nzDropdownClassName]="'ddc'">
                 <nz-option nzValue="GPIO2" nzLabel="GPIO2"></nz-option>
             </nz-select>
-            <nz-select ngModel="50" [nzDropdownClassName]="'ddc'">
+            <nz-select ngModel="50" [nzDropdownClassName]="'ddc'" style="width: 60px;">
                 <nz-option nzValue="50" nzLabel="50"></nz-option>
             </nz-select>
+            <div class="unit ccenter">Hz</div>
             <input nz-input type="number" />
             <div class="unit ccenter">%</div>
         </ng-container>

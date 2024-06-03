@@ -74,6 +74,10 @@ export class AsrComponent {
 
   }
 
+  ngOnDestroy(): void {
+    this.dragulaService.destroy('VAMPIRES')
+  }
+
   runOTA() {
     console.log('runOTA')
     this.otaService.runOTA()
