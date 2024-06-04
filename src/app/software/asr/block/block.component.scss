@@ -64,12 +64,6 @@
         display: flex;
         margin-top: 5px;
 
-        input {
-            height: 28px;
-            border-radius: 5px;
-            border: none;
-        }
-
         nz-select {
             height: 24px;
             min-width: 55px;
@@ -104,9 +98,11 @@
         }
 
         input {
-            font-size: 10px;
+            font-size: 12px;
             height: 24px;
             padding: 2px 5px;
+            border-radius: 5px;
+            border: none;
         }
 
         .unit {
