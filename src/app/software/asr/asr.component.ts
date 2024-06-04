@@ -76,8 +76,16 @@ export class AsrComponent {
     return this.asrService.speech
   }
 
+  set speech(value) {
+    this.asrService.speech = value
+  }
+
   get serial() {
     return this.asrService.serial
+  }
+
+  set serial(value) {
+    this.asrService.serial = value
   }
 
   constructor(
@@ -176,4 +184,70 @@ export class AsrComponent {
     console.log(this.serialCmdList);
   }
 
+  exportFile() {
+    let config = {
+      speech: this.speech,
+      serial: this.serial,
+      weekCmdList: this.weekCmdList,
+      asrCmdList: this.asrCmdList,
+      intCmdList: this.intCmdList,
+      serialCmdList: this.serialCmdList
+    }
+    download(config)
+  }
+
+  importFile() {
+    let fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+    fileInput.onchange = (e) => {
+      let file = fileInput.files[0];
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        let result = JSON.parse(reader.result as string);
+        this.speech = result.speech;
+        this.serial = result.serial;
+        this.weekCmdList = result.weekCmdList;
+        this.asrCmdList = result.asrCmdList;
+        this.intCmdList = result.intCmdList;
+        this.serialCmdList = result.serialCmdList;
+        this.cd.detectChanges();
+      }
+      reader.readAsText(file);
+    }
+    fileInput.click();
+  }
+
+  clearAll() {
+    this.weekCmdList = [[]]
+    this.asrCmdList = [[]]
+    this.intCmdList = [[]]
+    this.serialCmdList = [[]]
+  }
+
+}
+
+function download(config) {
+  // 将对象转换为 JSON 格式的字符串
+  let dataStr = JSON.stringify(config);
+
+  // 创建一个 Blob 对象，内容为上面的字符串
+  let dataBlob = new Blob([dataStr], { type: 'text/plain' });
+
+  // 创建一个指向 Blob 对象的 URL
+  let url = URL.createObjectURL(dataBlob);
+
+  // 创建一个隐藏的 <a> 元素，设置其 href 为上面的 URL
+  let downloadLink = document.createElement('a');
+  downloadLink.href = url;
+  downloadLink.download = 'config.json';
+
+  // 将 <a> 元素添加到文档中
+  document.body.appendChild(downloadLink);
+
+  // 触发点击事件，开始下载
+  downloadLink.click();
+
+  // 下载完成后，删除 <a> 元素
+  document.body.removeChild(downloadLink);
 }
