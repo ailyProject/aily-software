@@ -13,6 +13,7 @@ import { blockList } from './block/block.config';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
 import { BlockComponent } from './block/block.component';
 import { Subscription } from 'rxjs';
+import { AsrService } from './asr.service';
 
 @Component({
   selector: 'app-asr',
@@ -35,16 +36,52 @@ import { Subscription } from 'rxjs';
 export class AsrComponent {
 
   blockList = blockList
+  subs = new Subscription();
 
+  get weekCmdList() {
+    return this.asrService.weekCmdList
+  }
 
-  weekCmdList = []
-  asrCmdList = [[]]
-  intCmdList = [[]]
-  serialCmdList = [[]]
+  set weekCmdList(value) {
+    this.asrService.weekCmdList = value
+  }
+
+  get asrCmdList() {
+    return this.asrService.asrCmdList
+  }
+
+  // set asrCmdList(value) {
+  //   this.asrService.asrCmdList = value
+  // }
+
+  get intCmdList() {
+    return this.asrService.intCmdList
+  }
+
+  // set intCmdList(value) {
+  //   this.asrService.intCmdList = value
+  // }
+
+  get serialCmdList() {
+    return this.asrService.serialCmdList
+  }
+
+  // set serialCmdList(value) {
+  //   this.asrService.serialCmdList = value
+  // }
+
+  get speech() {
+    return this.asrService.speech
+  }
+
+  get serial() {
+    return this.asrService.serial
+  }
 
   constructor(
     private otaService: OtaService,
-    private dragulaService: DragulaService
+    private dragulaService: DragulaService,
+    private asrService: AsrService
   ) {
     this.dragulaService.createGroup('VAMPIRES', {
       copy: (el, source) => {
@@ -63,7 +100,7 @@ export class AsrComponent {
       .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
         // console.log('dropModel', el, target, source, sourceModel, targetModel, item)
         setTimeout(() => {
-          this.save()
+          this.asrService.save()
         }, 2000)
       })
     );
@@ -74,32 +111,32 @@ export class AsrComponent {
       })
     );
 
-    this.load()
+    this.asrService.load()
 
   }
 
 
-  // 将数据暂存储到localStorage
-  save() {
-    const data = {
-      weekCmdList: this.weekCmdList,
-      asrCmdList: this.asrCmdList,
-      intCmdList: this.intCmdList,
-      serialCmdList: this.serialCmdList
-    }
-    localStorage.setItem('asr', JSON.stringify(data))
-  }
+  // // 将数据暂存储到localStorage
+  // save() {
+  //   const data = {
+  //     weekCmdList: this.weekCmdList,
+  //     asrCmdList: this.asrCmdList,
+  //     intCmdList: this.intCmdList,
+  //     serialCmdList: this.serialCmdList
+  //   }
+  //   localStorage.setItem('asr', JSON.stringify(data))
+  // }
 
-  // 从localStorage中获取数据
-  load() {
-    const data = JSON.parse(localStorage.getItem('asr'))
-    if (data) {
-      this.weekCmdList = data.weekCmdList
-      this.asrCmdList = data.asrCmdList
-      this.intCmdList = data.intCmdList
-      this.serialCmdList = data.serialCmdList
-    }
-  }
+  // // 从localStorage中获取数据
+  // load() {
+  //   const data = JSON.parse(localStorage.getItem('asr'))
+  //   if (data) {
+  //     this.weekCmdList = data.weekCmdList
+  //     this.asrCmdList = data.asrCmdList
+  //     this.intCmdList = data.intCmdList
+  //     this.serialCmdList = data.serialCmdList
+  //   }
+  // }
 
   ngOnDestroy(): void {
     this.dragulaService.destroy('VAMPIRES')
@@ -124,18 +161,6 @@ export class AsrComponent {
     this.serialCmdList.push([])
   }
 
-
-  speech = {
-    volume: 5,
-    speed: 5,
-    pitch: 5
-  }
-
-  serial = {
-    port: 'UART2',
-    baudrate: 115200
-  }
-
   settingchange() {
 
   }
@@ -149,5 +174,4 @@ export class AsrComponent {
     console.log(this.serialCmdList);
   }
 
-  subs = new Subscription();
 }

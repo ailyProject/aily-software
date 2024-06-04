@@ -38,7 +38,7 @@ export const blockList = [{
     background: 'rgba(236, 246, 255, 1)',
     background2: 'rgba(209, 233, 255, 1)',
     color: 'rgba(62, 144, 212, 1)',
-    width: 95,
+    width: 120,
     value: 1000
 }
 ]

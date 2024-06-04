@@ -6,8 +6,11 @@
         <div class="text">
             {{block.title}}
         </div>
-        <div class="dots">
-            <i class="fa-solid fa-grip-dots"></i>
+        <div class="copy ccenter" (click)="copy()">
+            <i class="fa-regular fa-copy"></i>
+        </div>
+        <div class="delete ccenter" (click)="delete()">
+            <i class="fa-regular fa-trash"></i>
         </div>
     </div>
     <div class="bot">
@@ -30,10 +33,10 @@
             <nz-select ngModel="GPIO2" [nzDropdownClassName]="'ddc'">
                 <nz-option nzValue="GPIO2" nzLabel="GPIO2"></nz-option>
             </nz-select>
-            <nz-select ngModel="50" [nzDropdownClassName]="'ddc'" style="width: 60px;">
+            <nz-select ngModel="50" [nzDropdownClassName]="'ddc'" style="min-width: 35px !important;">
                 <nz-option nzValue="50" nzLabel="50"></nz-option>
             </nz-select>
-            <div class="unit ccenter">Hz</div>
+            <div class="unit ccenter" style="margin:0 5px 0 -5px;">Hz</div>
             <input nz-input type="number" />
             <div class="unit ccenter">%</div>
         </ng-container>
@@ -41,7 +44,8 @@
             <input nz-input [(ngModel)]="block.value" type="number" />
         </ng-container>
         <ng-container *ngIf="block.type=='delay'">
-            <input nz-input [(ngModel)]="block.value" type="number" /><div class="unit ccenter">ms</div>
+            <input nz-input [(ngModel)]="block.value" type="number" />
+            <div class="unit ccenter">ms</div>
         </ng-container>
     </div>
 </div>

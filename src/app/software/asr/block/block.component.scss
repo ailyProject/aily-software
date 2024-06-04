@@ -10,6 +10,9 @@
 
     &:hover {
         opacity: 1;
+        .copy,.delete{
+            visibility: visible !important;
+        }
     }
 
     .top {
@@ -25,10 +28,30 @@
             font-size: 14px;
         }
 
-        .dots {
+        .copy {
+            visibility: hidden;
+            position: absolute;
+            right: 32px;
+            opacity: 0.5;
+            width: 22px;
+            height: 22px;
+            opacity: 0.5;
+            &:hover{
+                opacity: 1;
+            }
+        }
+
+        .delete {
+            visibility: hidden;
             position: absolute;
             right: 10px;
             opacity: 0.5;
+            width: 22px;
+            height: 22px;
+            opacity: 0.5;
+            &:hover{
+                opacity: 1;
+            }
         }
 
         .text {
@@ -49,7 +72,7 @@
 
         nz-select {
             height: 24px;
-            min-width: 50px;
+            min-width: 55px;
             border-radius: 5px;
             margin-right: 8px;
 
