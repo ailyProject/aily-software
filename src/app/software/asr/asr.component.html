@@ -103,7 +103,7 @@
             </div>
             <div class="a-row" *ngFor="let subList of weekCmdList;index as i">
                 <div class="left">
-                    唤醒词
+                    <div class="text">唤醒词</div>
                     <input nz-input type="text">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="weekCmd" [(dragulaModel)]='weekCmdList[i]'>
@@ -118,7 +118,7 @@
             </div>
             <div class="a-row" *ngFor="let subList of asrCmdList;index as i">
                 <div class="left">
-                    语音指令{{i}}
+                    <div class="text">语音指令{{i}}</div>
                     <input nz-input type="text">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="speechCmd" [(dragulaModel)]='asrCmdList[i]'>
@@ -134,8 +134,16 @@
             </div>
             <div class="a-row" *ngFor="let subList of intCmdList;index as i">
                 <div class="left">
-                    IO中断指令{{i}}
-                    <input nz-input type="text">
+                    <div class="text">IO中断指令{{i}}</div>
+                    <div class="left-inner">
+                        <nz-select [nzDropdownClassName]="'ddc'">
+                            <nz-option nzValue="{{PIN}}" nzLabel="{{PIN}}" *ngFor="let PIN of INT_PINS"></nz-option>
+                        </nz-select>
+                        <nz-select ngModel="UP" [nzDropdownClassName]="'ddc'">
+                            <nz-option nzValue="UP" nzLabel="UP"></nz-option>
+                            <nz-option nzValue="DOWN" nzLabel="DOWN"></nz-option>
+                        </nz-select>
+                    </div>
                 </div>
                 <div class="right" dragula="VAMPIRES" id="intCmd" [(dragulaModel)]='intCmdList[i]'>
                     <app-block *ngFor="let block of subList" [block]="block"></app-block>
@@ -149,7 +157,7 @@
             </div>
             <div class="a-row" *ngFor="let subList of serialCmdList;index as i">
                 <div class="left">
-                    串口指令{{i}}
+                    <div class="text">串口指令{{i}}</div>
                     <input nz-input type="text">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="serialCmd" [(dragulaModel)]='serialCmdList[i]'>

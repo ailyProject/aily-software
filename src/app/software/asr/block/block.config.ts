@@ -1,3 +1,16 @@
+export const GPIO_PINS = [
+    'GPIO1', 'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO20'
+]
+
+export const PWM_PINS = [
+    'GPIO15', 'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19', 'GPIO20'
+]
+
+export const INT_PINS = [
+    'GPIO15', 'GPIO16', 'GPIO17', 'GPIO18', 'GPIO19', 'GPIO20'
+]
+
+
 export const blockList = [{
     title: 'I/O控制',
     type: 'io',
@@ -5,7 +18,9 @@ export const blockList = [{
     background: 'rgba(242, 246, 246, 1)',
     background2: 'rgba(198, 223, 223, 1)',
     color: 'rgba(60, 140, 140, 1)',
-    width: 180
+    width: 180,
+    value: GPIO_PINS[0],
+    value2: 'HIGH'
 }, {
     title: '串口输出',
     type: 'serial',
@@ -13,7 +28,9 @@ export const blockList = [{
     background: 'rgba(255, 241, 248, 1)',
     background2: 'rgba(253, 208, 233, 1)',
     color: 'rgba(193, 53, 130, 1)',
-    width: 180
+    width: 180,
+    value: 'HEX',
+    value2: ''
 }, {
     title: 'PWM输出',
     type: 'pwm',
@@ -21,7 +38,10 @@ export const blockList = [{
     background: 'rgba(255, 234, 234, 1)',
     background2: 'rgba(255, 218, 213, 1)',
     color: 'rgba(255, 58, 44, 1)',
-    width: 180
+    width: 180,
+    value: PWM_PINS[0],
+    value2: 50,
+    value3: 50
 }, {
     title: '语音播放',
     type: 'play',
@@ -42,3 +62,4 @@ export const blockList = [{
     value: 1000
 }
 ]
+

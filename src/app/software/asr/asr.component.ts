@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSliderModule } from 'ng-zorro-antd/slider';
 import { OtaService } from './ota.service';
-import { blockList } from './block/block.config';
+import { INT_PINS, blockList } from './block/block.config';
 import { DragulaModule, DragulaService } from 'ng2-dragula';
 import { BlockComponent } from './block/block.component';
 import { Subscription } from 'rxjs';
@@ -88,6 +88,8 @@ export class AsrComponent {
     this.asrService.serial = value
   }
 
+  INT_PINS=INT_PINS
+
   constructor(
     private otaService: OtaService,
     private dragulaService: DragulaService,
@@ -124,29 +126,6 @@ export class AsrComponent {
     this.asrService.load()
 
   }
-
-
-  // // 将数据暂存储到localStorage
-  // save() {
-  //   const data = {
-  //     weekCmdList: this.weekCmdList,
-  //     asrCmdList: this.asrCmdList,
-  //     intCmdList: this.intCmdList,
-  //     serialCmdList: this.serialCmdList
-  //   }
-  //   localStorage.setItem('asr', JSON.stringify(data))
-  // }
-
-  // // 从localStorage中获取数据
-  // load() {
-  //   const data = JSON.parse(localStorage.getItem('asr'))
-  //   if (data) {
-  //     this.weekCmdList = data.weekCmdList
-  //     this.asrCmdList = data.asrCmdList
-  //     this.intCmdList = data.intCmdList
-  //     this.serialCmdList = data.serialCmdList
-  //   }
-  // }
 
   ngOnDestroy(): void {
     this.dragulaService.destroy('VAMPIRES')

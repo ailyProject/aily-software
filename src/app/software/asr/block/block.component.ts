@@ -6,6 +6,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { AsrService } from '../asr.service';
+import { GPIO_PINS, INT_PINS, PWM_PINS } from './block.config';
 
 @Component({
   selector: 'app-block',
@@ -23,6 +24,10 @@ import { AsrService } from '../asr.service';
 export class BlockComponent {
 
   @Input() block;
+
+  GPIO_PINS = GPIO_PINS
+  PWM_PINS = PWM_PINS
+  INT_PINS = INT_PINS
 
   constructor(
     private asrService: AsrService
