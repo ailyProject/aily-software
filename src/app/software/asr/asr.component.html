@@ -88,13 +88,13 @@
                 <div><i class="fa-solid fa-input-text"></i></div>
                 唤醒词
             </div>
-            <div class="a-row">
+            <div class="a-row" *ngFor="let subList of weekCmdList;index as i">
                 <div class="left">
                     唤醒词
                     <input nz-input type="text">
                 </div>
-                <div class="right" dragula="VAMPIRES" id="weekCmd" [(dragulaModel)]='weekCmdList'>
-                    <app-block *ngFor="let block of weekCmdList" [block]="block"></app-block>
+                <div class="right" dragula="VAMPIRES" id="weekCmd" [(dragulaModel)]='weekCmdList[i]'>
+                    <app-block *ngFor="let block of subList" [block]="block"></app-block>
                 </div>
             </div>
             <div class="title">

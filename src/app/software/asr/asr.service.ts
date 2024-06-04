@@ -16,7 +16,7 @@ export class AsrService {
     baudrate: 115200
   }
 
-  weekCmdList = []
+  weekCmdList = [[]]
   asrCmdList = [[]]
   intCmdList = [[]]
   serialCmdList = [[]]
@@ -31,12 +31,12 @@ export class AsrService {
       intCmdList: this.intCmdList,
       serialCmdList: this.serialCmdList
     }
-    localStorage.setItem('asr2', JSON.stringify(data))
+    localStorage.setItem('asr5', JSON.stringify(data))
   }
 
   // 从localStorage中获取数据
   load() {
-    const data = JSON.parse(localStorage.getItem('asr2'))
+    const data = JSON.parse(localStorage.getItem('asr5'))
     if (data) {
       this.weekCmdList = data.weekCmdList
       this.asrCmdList = data.asrCmdList
@@ -48,7 +48,7 @@ export class AsrService {
   findBlock(block) {
     // 查找block所在的列表
     let list = null
-    if (this.weekCmdList.includes(block)) {
+    if (this.weekCmdList[0].includes(block)) {
       list = this.weekCmdList
       return list
     } else {

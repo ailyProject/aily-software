@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MarkdownComponent } from '../../component/markdown/markdown.component';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -50,25 +50,25 @@ export class AsrComponent {
     return this.asrService.asrCmdList
   }
 
-  // set asrCmdList(value) {
-  //   this.asrService.asrCmdList = value
-  // }
+  set asrCmdList(value) {
+    this.asrService.asrCmdList = value
+  }
 
   get intCmdList() {
     return this.asrService.intCmdList
   }
 
-  // set intCmdList(value) {
-  //   this.asrService.intCmdList = value
-  // }
+  set intCmdList(value) {
+    this.asrService.intCmdList = value
+  }
 
   get serialCmdList() {
     return this.asrService.serialCmdList
   }
 
-  // set serialCmdList(value) {
-  //   this.asrService.serialCmdList = value
-  // }
+  set serialCmdList(value) {
+    this.asrService.serialCmdList = value
+  }
 
   get speech() {
     return this.asrService.speech
@@ -81,7 +81,8 @@ export class AsrComponent {
   constructor(
     private otaService: OtaService,
     private dragulaService: DragulaService,
-    private asrService: AsrService
+    private asrService: AsrService,
+    private cd: ChangeDetectorRef
   ) {
     this.dragulaService.createGroup('VAMPIRES', {
       copy: (el, source) => {
@@ -98,7 +99,11 @@ export class AsrComponent {
 
     this.subs.add(this.dragulaService.dropModel('VAMPIRES')
       .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
-        // console.log('dropModel', el, target, source, sourceModel, targetModel, item)
+
+        console.log(this.weekCmdList);
+        
+        // console.log('dropModel', el, target, source, sourceModel, targetModel, item);
+        
         setTimeout(() => {
           this.asrService.save()
         }, 2000)
