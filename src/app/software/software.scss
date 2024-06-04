@@ -17,11 +17,26 @@
     position: fixed;
     top: 18px;
     right: 15px;
+    display: flex;
 
     button {
         margin-left: 10px;
         background: #473bd4;
         color: #fff;
+
+        i {
+            margin-right: 10px;
+        }
+
+        &.btn {
+            width: 32px;
+            height: 32px;
+
+            i {
+                margin-left: -7px !important;
+            }
+
+        }
 
         &:hover {
             opacity: 0.8;
@@ -31,6 +46,13 @@
     .help {
         background: transparent;
         color: #000;
+    }
+
+    .ge{
+        margin-left: 10px;
+        height: 30px;
+        width: 1px;
+        background: #ccc;
     }
 }
 

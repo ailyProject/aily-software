@@ -14,6 +14,7 @@ import { DragulaModule, DragulaService } from 'ng2-dragula';
 import { BlockComponent } from './block/block.component';
 import { Subscription } from 'rxjs';
 import { AsrService } from './asr.service';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-asr',
@@ -28,7 +29,8 @@ import { AsrService } from './asr.service';
     NzSelectModule,
     NzSliderModule,
     DragulaModule,
-    BlockComponent
+    BlockComponent,
+    NzToolTipModule
   ],
   templateUrl: './asr.component.html',
   styleUrl: './asr.component.scss'
