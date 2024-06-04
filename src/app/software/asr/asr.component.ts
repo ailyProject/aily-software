@@ -99,14 +99,9 @@ export class AsrComponent {
 
     this.subs.add(this.dragulaService.dropModel('VAMPIRES')
       .subscribe(({ el, target, source, sourceModel, targetModel, item }) => {
-
-        console.log(this.weekCmdList);
-        
-        // console.log('dropModel', el, target, source, sourceModel, targetModel, item);
-        
         setTimeout(() => {
           this.asrService.save()
-        }, 2000)
+        }, 1000)
       })
     );
 

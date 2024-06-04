@@ -48,30 +48,32 @@ export class AsrService {
   findBlock(block) {
     // 查找block所在的列表
     let list = null
-    if (this.weekCmdList[0].includes(block)) {
-      list = this.weekCmdList
-      return list
-    } else {
-      for (let index = 0; index < this.asrCmdList.length; index++) {
-        const item = this.asrCmdList[index];
-        if (item.includes(block)) {
-          list = item
-          return list
-        }
+    for (let index = 0; index < this.weekCmdList.length; index++) {
+      const item = this.weekCmdList[index];
+      if (item.includes(block)) {
+        list = item
+        return list
       }
-      for (let index = 0; index < this.intCmdList.length; index++) {
-        const item = this.intCmdList[index];
-        if (item.includes(block)) {
-          list = item
-          return list
-        }
+    }
+    for (let index = 0; index < this.asrCmdList.length; index++) {
+      const item = this.asrCmdList[index];
+      if (item.includes(block)) {
+        list = item
+        return list
       }
-      for (let index = 0; index < this.serialCmdList.length; index++) {
-        const item = this.serialCmdList[index];
-        if (item.includes(block)) {
-          list = item
-          return list
-        }
+    }
+    for (let index = 0; index < this.intCmdList.length; index++) {
+      const item = this.intCmdList[index];
+      if (item.includes(block)) {
+        list = item
+        return list
+      }
+    }
+    for (let index = 0; index < this.serialCmdList.length; index++) {
+      const item = this.serialCmdList[index];
+      if (item.includes(block)) {
+        list = item
+        return list
       }
     }
   }
