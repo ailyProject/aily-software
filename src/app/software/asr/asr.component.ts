@@ -88,7 +88,39 @@ export class AsrComponent {
     this.asrService.serial = value
   }
 
-  INT_PINS=INT_PINS
+  get weekKeyword() {
+    return this.asrService.weekKeyword
+  }
+
+  set weekKeyword(value) {
+    this.asrService.weekKeyword = value
+  }
+
+  get asrKeywords() {
+    return this.asrService.asrKeywords
+  }
+
+  set asrKeywords(value) {
+    this.asrService.asrKeywords = value
+  }
+
+  get intParams() {
+    return this.asrService.intParams
+  }
+
+  set intParams(value) {
+    this.asrService.intParams = value
+  }
+
+  get serialParams() {
+    return this.asrService.serialParams
+  }
+
+  set serialParams(value) {
+    this.asrService.serialParams = value
+  }
+
+  INT_PINS = INT_PINS
 
   constructor(
     private otaService: OtaService,
@@ -138,15 +170,18 @@ export class AsrComponent {
 
 
   addAsrCmd() {
+    this.asrKeywords.push('')
     this.asrCmdList.push([])
   }
 
 
   addIntCmd() {
+    this.intParams.push({ pin: INT_PINS[0], mode: 'UP' })
     this.intCmdList.push([])
   }
 
   addSerialCmd() {
+    this.serialParams.push('')
     this.serialCmdList.push([])
   }
 
@@ -170,7 +205,11 @@ export class AsrComponent {
       weekCmdList: this.weekCmdList,
       asrCmdList: this.asrCmdList,
       intCmdList: this.intCmdList,
-      serialCmdList: this.serialCmdList
+      serialCmdList: this.serialCmdList,
+      weekKeyword: this.weekKeyword,
+      asrKeywords: this.asrKeywords,
+      intParams: this.intParams,
+      serialParams: this.serialParams
     }
     download(config)
   }
@@ -190,6 +229,10 @@ export class AsrComponent {
         this.asrCmdList = result.asrCmdList;
         this.intCmdList = result.intCmdList;
         this.serialCmdList = result.serialCmdList;
+        this.weekKeyword = result.weekKeyword;
+        this.asrKeywords = result.asrKeywords;
+        this.intParams = result.intParams;
+        this.serialParams = result.serialParams;
         this.cd.detectChanges();
       }
       reader.readAsText(file);
@@ -202,6 +245,20 @@ export class AsrComponent {
     this.asrCmdList = [[]]
     this.intCmdList = [[]]
     this.serialCmdList = [[]]
+    this.speech = {
+      volume: 5,
+      speed: 5,
+      pitch: 5
+    }
+    this.serial = {
+      port: 'UART2',
+      baudrate: 115200
+    }
+    this.weekKeyword = ''
+    this.asrKeywords = ['']
+    this.intParams = [{ pin: INT_PINS[0], mode: 'UP' }]
+    this.serialParams = ['']
+
   }
 
 }

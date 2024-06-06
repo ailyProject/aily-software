@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
+import { INT_PINS } from './block/block.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AsrService {
+
+  INT_PINS = INT_PINS
 
   speech = {
     volume: 5,
@@ -15,6 +18,11 @@ export class AsrService {
     port: 'UART2',
     baudrate: 115200
   }
+
+  weekKeyword = ''
+  asrKeywords = ['']
+  intParams = [{ pin: INT_PINS[0], mode: 'UP' }]
+  serialParams = ['']
 
   weekCmdList = [[]]
   asrCmdList = [[]]

@@ -48,9 +48,11 @@ export class OtaService {
 
   port;
 
+  currentImageArray: Uint8Array;
+
   constructor() { }
 
-  connect(baudRate = 115200) {
+  connectDevice(baudRate = 115200) {
     return new Promise(async (resolve, reject) => {
       if ('serial' in navigator) {
         try {
@@ -75,19 +77,22 @@ export class OtaService {
     });
   }
 
-  disconnect() {
-
+  disconnectDevice() {
+    if (this.port) {
+      this.port.close();
+      this.port = null;
+    }
   }
 
   async write(data: Uint8Array | string) {
 
   }
 
-  runOTA() {
+  async runOTA() {
     // 选择串口
-
+    this.connectDevice();
     // 加载固件
-
+    this.currentImageArray = await this.ReadImageFile()
     // 发送复位指令
     this.sendResetCmd();
     // 
@@ -101,7 +106,7 @@ export class OtaService {
   sendBootloaderHandShakeCmdTimer;
 
   async StartOTAProcess() {
-    const updateFirmeareSize = this.curImageArray.length;
+    const updateFirmeareSize = this.currentImageArray.length;
 
     this.ReadUpdaterFile()
     console.log(`updater文件总大小: ${this.curUpdaterArray.length} 字节`);
@@ -423,8 +428,8 @@ export class OtaService {
 
   //发送复位业务固件指令
   sendResetCmd(): void {
-    this.disconnect();
-    this.connect();
+    this.disconnectDevice();
+    this.connectDevice();
     this.write(OTA_RESET_CMD)
 
     // if (resetTryCount++ > 200) {   //尝试200次
@@ -437,8 +442,8 @@ export class OtaService {
 
   // 发送下载更新器指令
   async sendDownLoadUpdaterCmd() {
-    this.disconnect();
-    this.connect();
+    this.disconnectDevice();
+    this.connectDevice();
     this.write(OTA_REQUEST_CMD)
     // const OTA_REQUEST_CMD = "your command here";
     // await this.sendRequestToServer('write', this.hexStringToByteArray(OTA_REQUEST_CMD));
@@ -480,7 +485,6 @@ export class OtaService {
   }
 
   // 读取固件
-  curImageArray: Uint8Array;
   async ReadImageFile(url = '/assets/ota/Simplified_115200_V0.0.1.bin') {
     const response = await fetch(url);
     // 检查响应是否ok
@@ -490,7 +494,7 @@ export class OtaService {
     // 使用Response.arrayBuffer方法将其转换为ArrayBuffer
     const buffer = await response.arrayBuffer();
     // 将ArrayBuffer转换为Uint8Array
-    this.curImageArray = new Uint8Array(buffer);
+    return new Uint8Array(buffer);
   }
 
   //读取分区表信息

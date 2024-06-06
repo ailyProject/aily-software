@@ -104,7 +104,7 @@
             <div class="a-row" *ngFor="let subList of weekCmdList;index as i">
                 <div class="left">
                     <div class="text">唤醒词</div>
-                    <input nz-input type="text">
+                    <input nz-input type="text" [(ngModel)]="weekKeyword">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="weekCmd" [(dragulaModel)]='weekCmdList[i]'>
                     <app-block *ngFor="let block of subList" [block]="block"></app-block>
@@ -119,7 +119,7 @@
             <div class="a-row" *ngFor="let subList of asrCmdList;index as i">
                 <div class="left">
                     <div class="text">语音指令{{i}}</div>
-                    <input nz-input type="text">
+                    <input nz-input type="text" [(ngModel)]="asrKeywords[i]">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="speechCmd" [(dragulaModel)]='asrCmdList[i]'>
                     <!-- <div style="text-align: center;color:#ccc">拖拽模块到这里，编排触发动作</div> -->
@@ -136,10 +136,10 @@
                 <div class="left">
                     <div class="text">IO中断指令{{i}}</div>
                     <div class="left-inner">
-                        <nz-select [nzDropdownClassName]="'ddc'">
+                        <nz-select [nzDropdownClassName]="'ddc'" [(ngModel)]="intParams[i].pin">
                             <nz-option nzValue="{{PIN}}" nzLabel="{{PIN}}" *ngFor="let PIN of INT_PINS"></nz-option>
                         </nz-select>
-                        <nz-select ngModel="UP" [nzDropdownClassName]="'ddc'">
+                        <nz-select ngModel="UP" [nzDropdownClassName]="'ddc'" [(ngModel)]="intParams[i].mode">
                             <nz-option nzValue="UP" nzLabel="UP"></nz-option>
                             <nz-option nzValue="DOWN" nzLabel="DOWN"></nz-option>
                         </nz-select>
@@ -158,7 +158,7 @@
             <div class="a-row" *ngFor="let subList of serialCmdList;index as i">
                 <div class="left">
                     <div class="text">串口指令{{i}}</div>
-                    <input nz-input type="text">
+                    <input nz-input type="text" [(ngModel)]="serialParams[i]">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="serialCmd" [(dragulaModel)]='serialCmdList[i]'>
                     <app-block *ngFor="let block of subList" [block]="block"></app-block>
