@@ -1,0 +1,67 @@
+@import "../software.scss";
+
+.left-box {
+    width: 430px;
+}
+
+.right-box {
+    width: calc(100% - 430px);
+    margin-left: 15px;
+}
+
+.phone-box {
+    position: relative;
+    width: 500px;
+    transform: scale(0.88);
+
+    .header {
+        position: absolute;
+        top: 29px;
+        left: 35px;
+        width: 320px;
+        height: 30px;
+        background: #f7f7f7;
+    }
+
+    iframe {
+        position: absolute;
+        top: 58px;
+        left: 35px;
+        width: 320px;
+        height: 661px;
+    }
+
+    img {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 466px;
+    }
+}
+
+.app-dl-box {
+    display: flex;
+
+    >div {
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
+
+        i {
+            font-size: 30px;
+            color: #7d7d7d;
+        }
+
+        i.fa-android {
+            color: #a4c639;
+        }
+
+        &.hover {
+            opacity: 0.8;
+        }
+    }
+}

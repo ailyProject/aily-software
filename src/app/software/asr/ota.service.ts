@@ -47,24 +47,17 @@ export class OtaService {
   updateInfo = null;
 
   port;
+  writer;
 
   currentImageArray: Uint8Array;
 
   constructor() { }
 
-  connectDevice(baudRate = 115200) {
+  connectDevice() {
     return new Promise(async (resolve, reject) => {
       if ('serial' in navigator) {
         try {
           this.port = await serial.requestPort();
-          console.log('Serial port:', this.port);
-          await this.port.open({ baudRate: baudRate, bufferSize: 5120 });
-          this.port.readable.pipeTo(new WritableStream({
-            write: (data) => {
-              const textDecoder = new TextDecoder();
-              console.log('Received data:', textDecoder.decode(data));
-            }
-          }));
           resolve(true)
         } catch (err) {
           console.error('There was an error opening the serial port:', err);
@@ -77,6 +70,27 @@ export class OtaService {
     });
   }
 
+  async openSerialport(baudRate = 115200) {
+    console.log('Serial port:', this.port);
+    await this.port.open({ baudRate: baudRate, bufferSize: 5120 });
+    this.port.readable.pipeTo(new WritableStream({
+      write: (data) => {
+        console.log('Received data:', data);
+      }
+    }));
+    this.writer = this.port.writable.getWriter();
+  }
+
+  closeSerialport() {
+    if (this.port) {
+      try {
+        this.port.close();
+      } catch (error) {
+
+      }
+    }
+  }
+
   disconnectDevice() {
     if (this.port) {
       this.port.close();
@@ -84,21 +98,34 @@ export class OtaService {
     }
   }
 
-  async write(data: Uint8Array | string) {
-
+  async send(data: Uint8Array | string) {
+    if (typeof data === 'string') {
+      // 把字符串每两个字符做分割，转成数组
+      const hexArray = data.match(/[\s\S]{1,2}/g) || [];
+      // 把HEX格式的字符串转成Uint8Array
+      const numberArray = hexArray.map(hex => parseInt(hex, 16));
+      data = new Uint8Array(numberArray);
+    }
+    console.log(data);
+    await this.writer.write(data);
+    // this.writer.releaseLock();
   }
 
   async runOTA() {
     // 选择串口
-    this.connectDevice();
+    await this.connectDevice();
     // 加载固件
     this.currentImageArray = await this.ReadImageFile()
+    console.log(`固件总大小: ${this.currentImageArray.length} bytes`);
+
     // 发送复位指令
-    this.sendResetCmd();
-    // 
+    await this.sendResetCmd();
+    // 发送握手指令
+    setTimeout(async () => {
+      await this.sendDownLoadUpdaterCmd();
+    }, 50);
 
-
-    this.StartOTAProcess();
+    // this.StartOTAProcess();
   }
 
   sendResetCmdTimer;
@@ -427,10 +454,10 @@ export class OtaService {
   }
 
   //发送复位业务固件指令
-  sendResetCmd(): void {
-    this.disconnectDevice();
-    this.connectDevice();
-    this.write(OTA_RESET_CMD)
+  async sendResetCmd() {
+    // this.closeSerialport();
+    await this.openSerialport();
+    await this.send(OTA_RESET_CMD)
 
     // if (resetTryCount++ > 200) {   //尝试200次
     //   syncUpdaterTryCount = 0;
@@ -442,9 +469,7 @@ export class OtaService {
 
   // 发送下载更新器指令
   async sendDownLoadUpdaterCmd() {
-    this.disconnectDevice();
-    this.connectDevice();
-    this.write(OTA_REQUEST_CMD)
+    this.send(OTA_REQUEST_CMD)
     // const OTA_REQUEST_CMD = "your command here";
     // await this.sendRequestToServer('write', this.hexStringToByteArray(OTA_REQUEST_CMD));
     // if (this.syncUpdaterTryCount++ > 200) {   //尝试200次
@@ -831,9 +856,9 @@ export class OtaService {
   }
 
   sendPackage(packageT: PackageT) {
-    if (packageT.rawData.data1.length > 0) this.write(packageT.rawData.data1);  //发送包头+数据长度+消息类型+指令
-    if (packageT.rawData.data2.length > 0) this.write(packageT.rawData.data2);  //发送数据
-    if (packageT.rawData.data3.length > 0) this.write(packageT.rawData.data3);  //发送CRC加包尾
+    if (packageT.rawData.data1.length > 0) this.send(packageT.rawData.data1);  //发送包头+数据长度+消息类型+指令
+    if (packageT.rawData.data2.length > 0) this.send(packageT.rawData.data2);  //发送数据
+    if (packageT.rawData.data3.length > 0) this.send(packageT.rawData.data3);  //发送CRC加包尾
   }
 
   newPackage(cmd: number, msg_type: number, seq: number, data: Uint8Array, data_length: number): PackageProperty {

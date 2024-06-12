@@ -10,11 +10,11 @@ export const MENU = [
         title: 'aily ASR Module v1',
         route: '/asr'
     },
-    {
-        icon: 'fa-light fa-image-polaroid',
-        title: 'aily CV Module v1',
-        route: '/cv'
-    },
+    // {
+    //     icon: 'fa-light fa-image-polaroid',
+    //     title: 'aily CV Module v1',
+    //     route: '/cv'
+    // },
     {
         icon: 'fa-light fa-screwdriver-wrench',
         title: 'aily Config Tool',

@@ -39,12 +39,12 @@ export class AsrService {
       intCmdList: this.intCmdList,
       serialCmdList: this.serialCmdList
     }
-    localStorage.setItem('asr5', JSON.stringify(data))
+    localStorage.setItem('asr', JSON.stringify(data))
   }
 
   // 从localStorage中获取数据
   load() {
-    const data = JSON.parse(localStorage.getItem('asr5'))
+    const data = JSON.parse(localStorage.getItem('asr'))
     if (data) {
       this.weekCmdList = data.weekCmdList
       this.asrCmdList = data.asrCmdList
