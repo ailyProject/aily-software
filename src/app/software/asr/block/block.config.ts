@@ -1,3 +1,5 @@
+
+// 1303
 export const GPIO_PINS = [
     'GPIO1', 'GPIO6', 'GPIO7', 'GPIO8', 'GPIO9', 'GPIO20'
 ]

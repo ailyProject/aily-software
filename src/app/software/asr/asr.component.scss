@@ -105,12 +105,32 @@
         flex-direction: column;
         justify-content: center;
         position: relative;
+        &:hover{
+            .delete {
+                visibility: visible !important;
+            }
+        }
 
         .text{
             line-height: 24px;
             height: 24px;
             display: flex;
             align-items: center;
+
+            .delete {
+                visibility: hidden;
+                position: absolute;
+                right: 10px;
+                opacity: 0.5;
+                width: 22px;
+                height: 22px;
+                opacity: 0.5;
+                color: #666;
+                cursor: pointer;
+                &:hover{
+                    opacity: 1;
+                }
+            }
         }
 
 

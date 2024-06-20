@@ -261,6 +261,12 @@ export class AsrComponent {
 
   }
 
+  deleteLine(sub, List) {
+    // 从list中删除指定的sub
+    let index = List.indexOf(sub)
+    List.splice(index, 1)
+  }
+
 }
 
 function download(config) {

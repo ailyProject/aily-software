@@ -118,7 +118,12 @@
             </div>
             <div class="a-row" *ngFor="let subList of asrCmdList;index as i">
                 <div class="left">
-                    <div class="text">语音指令{{i}}</div>
+                    <div class="text">语音指令{{i}}
+                        <div class="delete ccenter" (click)="deleteLine(subList,asrCmdList)"
+                            *ngIf="intCmdList.length>1">
+                            <i class="fa-regular fa-trash"></i>
+                        </div>
+                    </div>
                     <input nz-input type="text" [(ngModel)]="asrKeywords[i]">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="speechCmd" [(dragulaModel)]='asrCmdList[i]'>
@@ -134,7 +139,12 @@
             </div>
             <div class="a-row" *ngFor="let subList of intCmdList;index as i">
                 <div class="left">
-                    <div class="text">IO中断指令{{i}}</div>
+                    <div class="text">IO中断指令{{i}}
+                        <div class="delete ccenter" (click)="deleteLine(subList,intCmdList)"
+                            *ngIf="intCmdList.length>1">
+                            <i class="fa-regular fa-trash"></i>
+                        </div>
+                    </div>
                     <div class="left-inner">
                         <nz-select [nzDropdownClassName]="'ddc'" [(ngModel)]="intParams[i].pin">
                             <nz-option nzValue="{{PIN}}" nzLabel="{{PIN}}" *ngFor="let PIN of INT_PINS"></nz-option>
@@ -157,7 +167,12 @@
             </div>
             <div class="a-row" *ngFor="let subList of serialCmdList;index as i">
                 <div class="left">
-                    <div class="text">串口指令{{i}}</div>
+                    <div class="text">串口指令{{i}}
+                        <div class="delete ccenter" (click)="deleteLine(subList,serialCmdList)"
+                            *ngIf="serialCmdList.length>1">
+                            <i class="fa-regular fa-trash"></i>
+                        </div>
+                    </div>
                     <input nz-input type="text" [(ngModel)]="serialParams[i]">
                 </div>
                 <div class="right" dragula="VAMPIRES" id="serialCmd" [(dragulaModel)]='serialCmdList[i]'>
